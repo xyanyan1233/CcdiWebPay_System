@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCDI Webpay - Student Login</title>
+    <link rel="stylesheet" href="../../css/students/schooltheme/student_login.css">
+    </head>
+<body>
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center p-3">
+        <div class="logo">
+            <img src="../../images/ccdilogo.png" alt="CCDI Logo" height="50">
+        </div>
+        <nav class="d-flex">
+            <a href="https://ccdisorsogon.edu.ph/" class="btn btn-primary">LMS</a>
+            <a href="student_login.php" class="btn btn-link">Login</a>
+            <a href="signup.php" class="btn btn-link">Signup</a>    
+        </nav>
+    </header>
+    <div class="mop">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.28 2.17" height="40px" width="100%" preserveAspectRatio="none">
+    <path d="M0 .5c3.07.55 9.27-.42 16.14 0 6.88.4 13.75.57 19.14-.11V0H0z" fill="%23ffffff"></path>
+    <path d="M0 1c3.17.8 7.29-.38 10.04-.55 2.75-.17 9.25 1.47 12.67 1.3 3.43-.17 4.65-.84 7.05-.87 2.4-.02 5.52.88 5.52.88V0H0z" opacity=".5" fill="%23ffffff">
+    </path><path d="M0 1.85c2.56-.83 7.68-.3 11.79-.42 4.1-.12 6.86-.61 9.58-.28 2.73.33 5.61 1.17 8.61 1 3-.19 4.73-.82 5.3-.84V.1H0z" opacity=".5" fill="%23ffffff">
+    </path></svg></div>
+    <!-- Body Content -->
+    <main class="d-flex align-items-center justify-content-between">
+        <div class="logo-section text-center">
+            <img src="../../images/ccdilogo.png" alt="CCDI Large Logo" class="large-logo">
+            <p class="description">Welcome to CCDI Webpay - Simplifying your payments.</p>
+        </div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <form action="student_login.php" method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                {% if error_message %}
+            <div class="alert alert-danger">{{ error_message }}</div>
+            {% endif %}
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p class="mt-3">Don't have an account? <a href="signup.php">Signup here</a></p>
+            </form>
+        </div>
+    </main>
+    <div class="divider-bottom"><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+    </div>
+       <section class="payments">
+    <h2 class="text-center">Payment Methods</h2>
+    <div class="payment-container">
+        <div class="payment-logos">
+            <img src="../../images/paymentlogo/paypallogo.png" alt="PayPal">
+            <img src="../../images/paymentlogo/GCash_logo.png" alt="GCash">
+            <img src="../../images/paymentlogo/paymaya.png" alt="PayMaya">
+            <img src="../../images/paymentlogo/gotyme.png" alt="GOtyme">
+            <img src="../../images/paymentlogo/grabpay.png" alt="GrabPay">
+            <img src="../../images/paymentlogo/landbank.png" alt="Landbank">
+            <img src="../../images/paymentlogo/rcbc.png" alt="RCBC">
+            <img src="../../images/paymentlogo/bpi.png" alt="BPI">
+            <img src="../../images/paymentlogo/metrobank.png" alt="Metrobank">
+            <img src="../../images/paymentlogo/bdo.png" alt="BDO">
+            <img src="../../images/paymentlogo/pnb.png" alt="PNB">
+            <img src="../../images/paymentlogo/chinabank.png" alt="ChinaBank">
+            <img src="../../images/paymentlogo/dbp.png" alt="DBP">
+        </div>
+    </div>
+</section>
+
+
+    <div class="divider-top"><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+    </div>
+       <!--
+
+    <!-- How to Pay -->
+    <section class="how-to-pay">
+        <h2 class="text-center">How to Pay Using CCDI Webpay</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="circle">1</div>
+                <p>Log in to your account.</p>
+            </div>
+            <div class="arrow"></div>
+            <div class="step">
+                <div class="circle">2</div>
+                <p>Navigate to the payment section.</p>
+            </div>
+            <div class="arrow"></div>
+            <div class="step">
+                <div class="circle">3</div>
+                <p>Choose your preferred payment method.</p>
+            </div>
+            <div class="arrow"></div>
+            <div class="step">
+                <div class="circle">4</div>
+                <p>Follow the instructions and confirm your payment.</p>
+            </div>
+        </div>
+    </section>
+<div class="divider-footer">
+<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffffff"></path>
+<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23ffffff"></path>
+<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ffffff"></path>
+</svg>
+</div>
+     
+    <!-- Footer -->
+    <footer class="text-center p-3 bg-dark text-white">
+        <p>&copy; 2024 CCDI Webpay. All rights reserved.</p>
+    </footer>
+    <script>
+    window.onload = function() {
+    const logoContainer = document.querySelector('.payment-logos');
+    const logos = logoContainer.children;
+
+    // Clone the logos to create a continuous loop effect
+    const logoClone = logoContainer.cloneNode(true);
+    logoContainer.parentNode.appendChild(logoClone);
+};
+ </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% include "header.twig" %}
+<link rel="stylesheet" href="../../css/students/schooltheme/payments.css">
+{% block content %}
+<div class="payments-container">
+    <!-- Header Section -->
+    <div class="header-section">
+        <h1>Your Payments</h1>
+        <p>View and manage your payment history easily.</p>
+    </div>
+
+    <!-- Search and Filters -->
+    <div class="filters-section">
+        <div class="search-bar">
+            <input type="text" id="search" name="search" placeholder="Search payments...">
+            <button class="search-btn">Search</button>
+        </div>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn" data-filter="canceled">Canceled</button>
+        </div>
+    </div>
+
+    <!-- Payments Table -->
+    <div class="payments-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="payments-list">
+                {% for payment in payments %}
+                <tr class="payment-row" data-status="{{ payment.status }}">
+                    <td>{{ payment.id }}</td>
+                    <td>{{ payment.category }}</td>
+                    <td>₱{{ payment.amount }}</td>
+                    <td class="status {{ payment.status|lower }}">{{ payment.status }}</td>
+                    <td>{{ payment.due_date }}</td>
+                    <td>
+                        <button class="view-btn">View</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

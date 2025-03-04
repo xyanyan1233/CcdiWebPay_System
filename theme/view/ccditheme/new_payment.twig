@@ -1,0 +1,224 @@
+{% include "header.twig" %}
+<link rel="stylesheet" href="../../css/students/schooltheme/new_payment.css">
+
+{% block content %}
+<div class="new-payment-container">
+    <!-- Cards Section -->
+    <div class="cards-section">
+        <div class="card welcome">
+            <h3>Welcome, {{ student.first_name }}</h3>
+            <p>Manage your payments efficiently.</p>
+        </div>
+        <div class="card all-payments">
+            <h3>All Payments</h3>
+            <p>{{ payments|length }}</p>
+        </div>
+        <div class="card pending-payments">
+            <h3>Pending Payments</h3>
+            <p>{{ fees|length }}</p>
+        </div>
+        <div class="card total-balance">
+            <h3>Total Balance</h3>
+            <p>₱{{ total_balance }}</p>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Form and Pending Payments Section -->
+    <div class="form-pending-section">
+        <!-- Payment Form -->
+        <div class="payment-form">
+            <h2>Payment Form</h2>
+            <form action="method_payment.php" method="POST">
+                <div class="form-group">
+                    <label for="search">Search Payment Category:</label>
+                    <div class="search-container">
+                    <input type="text" id="search" name="search" placeholder="Type to search categories...">
+                    <!-- Dropdown for live search -->
+                    <i class="fas fa-search search-icon"></i> <!-- Font Awesome search icon -->
+                    <div id="dropdown_for_search" class="dropdown" style="position: absolute; background-color: white; border: 1px solid #ccc; display: none; z-index: 10;"></div>
+                    
+                    <i class="fas fa-times clear-search" style="display: none;"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="category">Select Payment Category:</label>
+                    <select name="category" id="category">
+                        <option value="">Select Category</option>
+                        <!-- Dynamic categories will be added here -->
+                        {% for category in categories %}
+                            <option value="{{ category.type }}">{{ category.type }} - ₱{{ category.amount }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="payment-details">Details</label>
+                </div>
+                <div class="payment">
+                    <label>Total Payment:</label>
+                    <p>₱{{ total_payment }}</p>
+                    <input type="hidden" name="amount" value="{{ amount }}">
+                </div>
+                <button type="submit" class="btn-pay">Pay Now</button>
+            </form>
+        </div>
+
+        <!-- Pending Payments Section -->
+        <div class="pending-container">
+            <div class="pending-header">
+                <h2>Pending Payments</h2>
+            </div>
+            <div class="pending-payments">
+                <ul class="pending-list">
+                    <li>
+                        <span>pano mag mura with respect .</span>
+                        <span> putanginga mopo</span>
+                    </li>
+                    {% for payment in pending_payments %}
+                        <li>
+                            <span>{{ payment.name }}</span>
+                            <span>Due: {{ payment.due_date }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        
+            <!-- JS for Dynamic Dropdown -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const searchInput = document.getElementById('search');
+                    const dropdownDiv = document.getElementById('dropdown_for_search');
+                    const categorySelect = document.getElementById('category');
+                    const searchIcon = document.querySelector('.search-icon');
+                    const clearSearchIcon = document.querySelector('.clear-search');
+
+                    const fetchCategories = async (query) => {
+                        console.log('Search query sent to server:', query);
+
+                        if (!query) {
+                            dropdownDiv.style.display = 'none';
+                            dropdownDiv.innerHTML = '';
+                            return;
+                        }
+
+                        try {
+                            const url = `/theme/students/functions/fetch_categories.php?search=${encodeURIComponent(query)}`;
+                            const response = await fetch(url);
+                            const data = await response.json();
+                            console.log('Server response data:', data);
+
+                            if (!data || data.length === 0) {
+                                dropdownDiv.style.display = 'none';
+                                dropdownDiv.innerHTML = '';
+                                return;
+                            }
+
+                            // Clear previous results
+                            dropdownDiv.innerHTML = '';
+
+                            // Populate dropdown dynamically
+                            data.forEach(item => {
+                                const optionDiv = document.createElement('div');
+                                optionDiv.textContent = `${item.type} - ₱${parseFloat(item.amount).toFixed(2)}`;
+                                optionDiv.style.padding = '5px';
+                                optionDiv.style.cursor = 'pointer';
+
+                                optionDiv.addEventListener('click', function () {
+                                    searchInput.value = item.type;
+                                    dropdownDiv.style.display = 'none';
+
+                                    // Populate the category select dropdown
+                                    categorySelect.innerHTML = `<option value="${item.type}">${item.type} - ₱${item.amount}</option>`;
+
+                                    // Update the total payment display
+                                    const paymentAmount = parseFloat(item.amount).toFixed(2);
+                                    document.querySelector('.payment p').textContent = `₱${paymentAmount}`;
+
+                                    // Update hidden amount input so it's correctly submitted
+                                    document.querySelector('input[name="amount"]').value = item.amount;
+                                });
+
+
+                                dropdownDiv.appendChild(optionDiv);
+                            });
+
+                            // Display the dropdown
+                            dropdownDiv.style.display = 'block';
+                        } catch (error) {
+                            console.error('Error fetching categories:', error);
+                            dropdownDiv.style.display = 'none';
+                        }
+                    };
+                    // Show or hide clear icon based on input content
+                    searchInput.addEventListener('input', function () {
+                        const query = searchInput.value.trim();
+                        console.log('Search query being sent:', query);
+
+                        // Show/hide the "clear" X icon based on input
+                        if (query.length > 0) {
+                            clearSearchIcon.style.display = 'inline-block';
+                        } else {
+                            clearSearchIcon.style.display = 'none';
+                        }
+
+                        if (query.length >= 1) {
+                            fetchCategories(query);
+                        } else {
+                            dropdownDiv.style.display = 'none';
+                            dropdownDiv.innerHTML = '';
+                        }
+                    });
+
+                    // Attach input event listener
+                    searchInput.addEventListener('input', function () {
+                        const query = searchInput.value.trim();
+                        console.log('Search query being sent:', query);
+
+                        if (query.length >= 1) {
+                            fetchCategories(query);
+                        } else {
+                            dropdownDiv.style.display = 'none';
+                            dropdownDiv.innerHTML = '';
+                        }
+                    });
+                    // Trigger search when search icon is clicked
+                    searchIcon.addEventListener('click', function () {
+                        const query = searchInput.value.trim();
+                        if (query.length >= 1) {
+                            fetchCategories(query);
+                        } else {
+                            // Clear dropdown and reset category select when search is empty
+                            dropdownDiv.style.display = 'none';
+                            dropdownDiv.innerHTML = '';
+                            categorySelect.innerHTML = '<option value="">Select Category</option>';
+                            searchInput.value = '';  // Clear the input field
+                            document.querySelector('.payment p').textContent = '₱0.00';  // Reset payment amount
+                        }
+                    });
+
+                    // Clear the search input and reset the values when "X" is clicked
+                    clearSearchIcon.addEventListener('click', function () {
+                        searchInput.value = '';  // Clear the input field
+                        clearSearchIcon.style.display = 'none';  // Hide the "X" icon
+                        dropdownDiv.style.display = 'none';  // Hide the dropdown
+                        dropdownDiv.innerHTML = '';  // Clear the dropdown
+                        categorySelect.innerHTML = '<option value="">Select Category</option>';  // Reset category select
+                        document.querySelector('.payment p').textContent = '₱0.00';  // Reset payment amount
+                    });
+
+                    // Close dropdown if clicked outside
+                    document.addEventListener('click', function (e) {
+                        if (!dropdownDiv.contains(e.target) && e.target !== searchInput) {
+                            dropdownDiv.style.display = 'none';
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

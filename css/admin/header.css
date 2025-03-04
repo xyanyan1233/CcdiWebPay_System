@@ -1,0 +1,352 @@
+
+#wrapper {
+    display: flex;
+    width: 100%;
+    transition: all 0.3s ease; /* Smooth transition for the wrapper */
+}
+nav {
+    display: flex;
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    max-height: 60px;
+    max-width: 100%;
+    position: relative;
+}
+
+.navbar-expand-lg {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space out elements in the navbar */
+    align-items: center;
+}
+
+.navbar .navbar-brand, 
+.navbar .navbar-nav, 
+.navbar .navbar-toggler {
+    display: flex;
+    align-items: center;
+}
+
+/* Center the contents of the navbar */
+.navbar .ml-auto {
+    display: flex;
+    justify-content: flex-end;   /* Align the last section to the right */
+    align-items: center;
+}
+
+.navbar .ml-3 {
+    margin-left: 1rem;  /* Margin for the "Dashboard" title */
+}
+
+button#menu-toggle {
+    margin-right: 10px;
+}
+
+.switch, .dropdown {
+    margin-left: 10px;
+}
+
+/* Sidebar styles */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #343a40; /* Dark background for the sidebar */
+    width: 250px; /* Default sidebar width */
+    transition: all 0.3s ease; /* Smooth transition for expanding/collapsing */
+    position: fixed; /* Fix the sidebar position to make it scroll independently */
+    height: 100vh; /* Full height of the viewport */
+    overflow-y: auto; /* Scroll if the content exceeds the viewport */
+}
+
+#sidebar-wrapper.toggled {
+    width: 60px; /* Collapsed width of the sidebar */
+}
+
+#page-content-wrapper {
+    flex: 1;
+    width: 100%; /* Ensure content takes full width */
+    margin-left: 250px; /* Adjust content position for expanded sidebar */
+    transition: margin 0.3s ease; /* Smooth transition when sidebar toggles */
+}
+
+#wrapper.toggled #page-content-wrapper {
+    margin-left: 0px; /* Adjust content position for collapsed sidebar */
+}
+
+/* Sidebar items */
+.list-group-item {
+    color: white;
+    background-color: #343a40; /* Dark background color for the sidebar items */
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover effect */
+    border: none; /* Remove item border */
+    display: flex; /* Flexbox for aligning icon and text */
+    align-items: center; /* Center items vertically */
+    padding: 1rem; /* Padding for items */
+}
+
+/* Adjusting text visibility based on sidebar state */
+#sidebar-wrapper.toggled .menu-text {
+    display: none; /* Hide text when collapsed */
+}
+
+#sidebar-wrapper .menu-text {
+    margin-left: 10px; /* Space between icon and text */
+}
+
+/* Show only icons when sidebar is collapsed */
+#sidebar-wrapper.toggled .list-group-item {
+    justify-content: center; /* Center the icon when collapsed */
+}
+
+.list-group-item:hover {
+    background-color: #007bff; /* Change background color on hover */
+    color: white; /* Keep text color white on hover */
+}
+
+/* Toggle button */
+#menu-toggle {
+    cursor: pointer;
+    border: none; /* Remove button border */
+    background: #007bff; /* Transparent background */
+    color: #343a40; /* Dark color for the button icon */
+    padding: 0.5rem 1rem; /* Padding around the icon */
+    transition: all 0.3s ease; /* Smooth transition for the toggle button */
+}
+
+#menu-toggle:focus {
+    outline: none; /* Remove focus outline */
+}
+
+/* Sidebar heading styles */
+.sidebar-heading {
+    height: 60px;
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
+    color: white; /* White text color */
+    text-align: center; /* Centered text */
+    font-weight: bold; /* Bold text */
+}
+
+/* Hide sidebar logo by default */
+#sidebar-logo {
+    width: 80%; /* Adjust logo size */
+}
+
+/* For smoother animation when sidebar collapses */
+.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+/* day and night */
+.switch {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    
+}
+
+.switch__input {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+}
+
+.switch__label {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 40px;
+    background-color: #2B2B2B;
+    border: 5px solid #5B5B5B;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(.46,.03,.52,.96);
+}
+
+.switch__indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(-72%);
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: #7B7B7B;
+    border-radius: 9999px;
+    box-shadow: 10px 0px 0 0 rgba(#000000, 0.2) inset;
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        background-color: #FFFFFF;
+        border-radius: 9999px;
+    }
+
+    &::before {
+        top: 7px;
+        left: 7px;
+        width: 9px;
+        height: 9px;
+        background-color: #FFFFFF;
+        opacity: 0.6;
+    }
+
+    &::after {
+        bottom: 8px;
+        right: 6px;
+        width: 14px;
+        height: 14px;
+        background-color: #FFFFFF;
+        opacity: 0.8;
+    }
+}
+
+.switch__decoration {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: #FFFFFF;
+    border-radius: 9999px;
+    animation: twinkle 0.8s infinite -0.6s;
+
+    &::before,
+    &::after {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 5px;
+        height: 5px;
+        background-color: #FFFFFF;
+        border-radius: 9999px;
+    }
+
+    &::before {
+        top: -20px;
+        left: 10px;
+        opacity: 1;
+        animation: twinkle 0.6s infinite;
+    }
+
+    &::after {
+        top: -7px;
+        left: 30px;
+        animation: twinkle 0.6s infinite -0.2s;
+    }
+}
+
+@keyframes twinkle {
+    50% { opacity: 0.2; }
+}
+
+.switch__indicator {
+    &,
+    &::before,
+    &::after {
+        transition: all 0.4s cubic-bezier(.46,.03,.52,.96);
+    }
+}
+
+.switch__input:checked + .switch__label {
+    background-color: #8FB5F5; /* Active background for sun */
+    border-color: #347CF8;
+
+    .switch__indicator {
+        background-color: #ECD21F; /* Color for sun */
+        box-shadow: none;
+        transform: translate(-50%, -50%) translateX(72%); /* Positioning */
+        
+        &::before,
+        &::after {
+            display: none; /* Remove cloud elements when active */
+        }
+    }
+
+    .switch__decoration {
+        top: 75%;
+        transform: translate(0%, -50%);
+        animation: cloud 8s linear infinite;
+
+        /* Adjust sizes if needed */
+        width: 20px;
+        height: 15px;
+
+        &::before {
+            width: 10px;
+            height: 10px;
+            top: auto;
+            bottom: 0;
+            left: -8px;
+            animation: none;
+        }
+
+        &::after {
+            width: 15px;
+            height: 15px;
+            top: auto;
+            bottom: 0;
+            left: 16px;
+            animation: none;
+        }
+
+        &,
+        &::before,
+        &::after {
+            border-radius: 9999px 9999px 0 0;
+        }
+
+        &::after {
+            border-bottom-right-radius: 9999px;
+        }
+    }
+}
+
+@keyframes cloud {
+    0% {
+        transform: translate(0%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        transform: translate(0%, -50%);
+    }
+}
+
+
+/* Dark mode styles */
+.bg-dark {
+    background-color: #343a40; /* Dark background */
+    color: white;
+}
+
+.text-white {
+    color: white; /* White text */
+}
+
+.table-dark {
+    background-color: #495057; /* Darker background for tables */
+}
+
+.table-dark th {
+    background-color: #6c757d; /* Dark header background */
+    color: white; /* White header text */
+}
+
+.table-dark td {
+    color: white; /* White text for table data */
+}
+
+.navbar{
+    background-color: #000000;
+}

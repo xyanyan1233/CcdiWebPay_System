@@ -1,0 +1,40 @@
+{% extends "header.twig" %}
+
+{% block title %}Payment Error{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <h2>Payment Error</h2>
+    <p>{{ error_message }}</p>
+    <a href="new_payment.php" class="btn btn-primary">Try Again</a>
+</div>
+
+<style>
+    .error-container {
+        text-align: center;
+        padding: 20px;
+        max-width: 500px;
+        margin: 50px auto;
+        background: #ffe6e6;
+        border: 1px solid #ff4d4d;
+        border-radius: 10px;
+    }
+    .error-container h2 {
+        color: #ff4d4d;
+    }
+    .error-container p {
+        margin: 15px 0;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        background: #ff4d4d;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .btn:hover {
+        background: #cc0000;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,325 @@
+{% include 'header.twig' %}
+<link rel="stylesheet" href="../../css/admin/settings/general.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.12.1/jquery-ui.min.css">
+<body class="{% if direction == 'rtl' %}rtl-mode{% else %}ltr-mode{% endif %}">
+<div class="container">
+    <h1>General Settings</h1>
+<!-- Logo Section -->
+    <div class="setting">
+        <h2>Logo</h2>
+        <p>No file chosen</p>
+        <p>200 x 80px .png are the recommended sizes</p>
+        <input type="file" id="logoInput" accept="image/*">
+        <div id="logoPreview" style="margin-top: 10px;">
+            <!-- Image preview will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Favicon Section -->
+    <div class="setting">
+        <h2>Favicon</h2>
+        <p>No file chosen</p>
+        <p>16 x 16px .png are the recommended sizes</p>
+        <input type="file" id="faviconInput" accept="image/*">
+        <div id="faviconPreview" style="margin-top: 10px;">
+            <!-- Image preview will be displayed here -->
+        </div>
+    </div>
+
+    <div class="setting">
+        <h2>School Name</h2>
+        <input type="text" id="panelName" placeholder="Enter Panel Name" value="{{ panelName }}">
+    </div>
+
+
+    <div class="setting">
+    <h2>Currency</h2>
+    <select id="currency" name="currency">
+        <option value="USD" {% if currency == 'PHP' %}selected{% endif %}selected>PHP - Peso</option>
+        <option value="USD" {% if currency == 'USD' %}selected{% endif %}>USD - US Dollar</option>
+        <option value="EUR" {% if currency == 'EUR' %}selected{% endif %}>EUR - Euro</option>
+        <option value="GBP" {% if currency == 'GBP' %}selected{% endif %}>GBP - British Pound</option>
+        <option value="JPY" {% if currency == 'JPY' %}selected{% endif %}>JPY - Japanese Yen</option>
+        <option value="AUD" {% if currency == 'AUD' %}selected{% endif %}>AUD - Australian Dollar</option>
+        <!-- Add more currency options as needed -->
+    </select>
+    <p>Note: If you changed currency, wait 5 minutes for rates to update.</p>
+</div>
+<div class="setting">
+    <h2>Currency Converter</h2>
+    <select id="currencyConverter" name="currencyConverter">
+        <option value="on" {% if currencyConverter == 'on' %}selected{% endif %}>On</option>
+        <option value="off" {% if currencyConverter == 'off' %}selected{% endif %}>Off</option>
+    </select>
+</div>
+
+
+    <div class="setting">
+    <h2>Time Period</h2>
+    <select id="timePeriod" name="timePeriod">
+        <option value="UTC-05:00" {% if timePeriod == 'UTC-05:00' %}selected{% endif %}>(UTC -5:00) Eastern Standard Time, Western Caribbean Standard Time</option>
+        <option value="UTC-06:00" {% if timePeriod == 'UTC-06:00' %}selected{% endif %}>(UTC -6:00) Central Standard Time</option>
+        <option value="UTC-07:00" {% if timePeriod == 'UTC-07:00' %}selected{% endif %}>(UTC -7:00) Mountain Standard Time</option>
+        <option value="UTC-08:00" {% if timePeriod == 'UTC-08:00' %}selected{% endif %}>(UTC -8:00) Pacific Standard Time</option>
+        <option value="UTC+00:00" {% if timePeriod == 'UTC+00:00' %}selected{% endif %}>(UTC +0:00) Greenwich Mean Time</option>
+        <option value="UTC+01:00" {% if timePeriod == 'UTC+01:00' %}selected{% endif %}>(UTC +1:00) Central European Time</option>
+        <option value="UTC+02:00" {% if timePeriod == 'UTC+02:00' %}selected{% endif %}>(UTC +2:00) Eastern European Time</option>
+        <option value="UTC+03:00" {% if timePeriod == 'UTC+03:00' %}selected{% endif %}>(UTC +3:00) Moscow Time</option>
+        <option value="UTC+05:00" {% if timePeriod == 'UTC+05:00' %}selected{% endif %}>(UTC +5:00) Pakistan Standard Time</option>
+        <option value="UTC+09:00" {% if timePeriod == 'UTC+09:00' %}selected{% endif %}>(UTC +9:00) Japan Standard Time</option>
+        <option value="UTC+10:00" {% if timePeriod == 'UTC+10:00' %}selected{% endif %}>(UTC +10:00) Australian Eastern Standard Time</option>
+        <!-- Add more time zone options as needed -->
+    </select>
+</div>
+
+
+    <div class="setting">
+    <h2>Maintenance Mode</h2>
+    <select id="maintenanceMode" name="maintenanceMode">
+        <option value="on" {% if maintenanceMode == 'on' %}selected{% endif %}>On</option>
+        <option value="off" {% if maintenanceMode == 'off' %}selected{% endif %} selected>Off</option>
+    </select>
+</div>
+
+    <div class="row">
+    <!-- Transfer Funds Dropdown -->
+    <div class="setting">
+        <h2>Transfer Funds</h2>
+        <select id="transferFunds" name="transferFunds">
+            <option value="enable" {% if transferFunds == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if transferFunds == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+    
+    <!-- Coupon Code Dropdown -->
+    <div class="setting">
+        <h2>Coupon Code</h2>
+        <select id="couponCode" name="couponCode">
+            <option value="enable" {% if coupons == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if coupons == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+</div>
+
+    <div class="setting">
+    <h2>Support System</h2>
+    <select id="supportSystem" name="supportSystem">
+        <option value="on" {% if supportSystem == 'on' %}selected{% endif %} selected>On</option>
+        <option value="off" {% if supportSystem == 'off' %}selected{% endif %}>Off</option>
+    </select>
+</div>
+
+
+    
+
+    <div class="setting">
+    <h2>Enable Registration</h2>
+    <select id="enableRegistration" name="enableRegistration">
+        <option value="on" {% if enableRegistration == 'on' %}selected{% endif %}>On</option>
+        <option value="off" {% if enableRegistration == 'off' %}selected{% endif %}selected>Off</option>
+    </select>
+</div>
+
+        <div class="row">
+    <!-- Change Students Password Dropdown -->
+    <div class="setting">
+        <h2>Change Students Password</h2>
+        <select id="changePassword" name="changePassword">
+            <option value="enable" {% if forgotPassword == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if forgotPassword == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+
+    <!-- If Server is Down Dropdown -->
+    <div class="setting">
+        <h2>If Server is Down</h2>
+        <select id="ifServerDown" name="ifServerDown">
+            <option value="warn-disable" {% if ifServiceDown == 'warn-disable' %}selected{% endif %}>Warn & Disable Service</option>
+            <option value="alert" {% if ifServiceDown == 'alert' %}selected{% endif %}>Alert</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <!-- SMS Verification Dropdown -->
+    <div class="setting">
+        <h2>SMS Verification</h2>
+        <select id="smsVerification" name="smsVerification">
+            <option value="enable" {% if smsVerification == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if smsVerification == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+
+    <!-- Email Verification Dropdown -->
+    <div class="setting">
+        <h2>Email Verification</h2>
+        <select id="emailVerification" name="emailVerification">
+            <option value="enable" {% if emailVerification == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if emailVerification == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+</div>
+
+  <div class="setting">
+    <h2>Admin 2FA</h2>
+    <select id="admin2fa" name="admin2fa">
+        <option value="enable" {% if admin2fa == 'enable' %}selected{% endif %}>Enable</option>
+        <option value="disable" {% if admin2fa == 'disable' %}selected{% endif %}>Disable</option>
+    </select>
+</div>
+
+<div class="row">
+    <!-- Google Login Dropdown -->
+    <div class="setting">
+        <h2>Google Login</h2>
+        <select id="googleLogin" name="googleLogin">
+            <option value="enable" {% if googleLogin == 'enable' %}selected{% endif %}>Enable</option>
+            <option value="disable" {% if googleLogin == 'disable' %}selected{% endif %}>Disable</option>
+        </select>
+    </div>
+
+    <!-- Redirect URI Textbox -->
+    <div class="setting">
+        <h2>Redirect URI</h2>
+        <input type="text" id="redirectUri" name="redirectUri" value="{{ redirectUri | default('yourdomain.com') }}" placeholder="yourdomain.com">
+    </div>
+
+    <!-- Client Id Textbox -->
+    <div class="setting">
+        <h2>Client Id</h2>
+        <input type="text" id="clientId" name="clientId" value="{{ clientId }}" placeholder="Enter Client Id">
+    </div>
+
+    <!-- Client Secret Textbox -->
+    <div class="setting">
+        <h2>Client Secret</h2>
+        <input type="text" id="clientSecret" name="clientSecret" value="{{ clientSecret }}" placeholder="Enter Client Secret">
+    </div>
+</div>
+
+    <div class="setting">
+        <h2>Music URL</h2>
+        <input type="text" id="musicUrl" name="musicUrl" value="{{ musicUrl }}" placeholder="Enter Music URL">
+    </div>
+
+    <!-- Header Code Multi-line Textbox -->
+    <div class="setting">
+        <h2>Header Code</h2>
+        <textarea id="headerCode" name="headerCode" rows="4" placeholder="Enter Header Code">{{ headerCode }}</textarea>
+    </div>
+
+    <!-- Footer Code Multi-line Textbox -->
+    <div class="setting">
+        <h2>Footer Code</h2>
+        <textarea id="footerCode" name="footerCode" rows="4" placeholder="Enter Footer Code">{{ footerCode }}</textarea>
+    </div>
+        <div class="setting">
+            <button id="updateButton" type="button">Update</button>
+        </div>
+    </div>
+
+
+<script>
+        // time zone
+    document.getElementById('timePeriod').addEventListener('change', function() {
+        // Handle time period change (e.g., submit form or update page)
+        console.log('Time period changed to: ' + this.value);
+        // You can trigger a form submission or make an AJAX request to update the time period
+    });
+
+
+    //currency
+    document.getElementById('currency').addEventListener('change', function() {
+        // Handle currency change (e.g., submit form or update page)
+        console.log('Currency changed to: ' + this.value);
+        // You can trigger a form submission or make an AJAX request to update the currency
+    });
+</script>
+
+
+
+<script>
+    document.getElementById('transferFunds').addEventListener('change', function() {
+        // Handle transfer funds toggle (e.g., submit form or update page)
+        console.log('Transfer Funds changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the transfer funds setting
+    });
+
+    document.getElementById('couponCode').addEventListener('change', function() {
+        // Handle coupon code toggle (e.g., submit form or update page)
+        console.log('Coupon Code changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the coupon code setting
+    });
+
+
+
+
+    document.getElementById('enableRegistration').addEventListener('change', function() {
+        // Handle registration toggle (e.g., submit form or update page)
+        console.log('Enable Registration changed to: ' + this.value);
+        // You can trigger form submission or make an AJAX request to update the registration state
+    });
+
+
+
+
+// Event listener for "Change Students Password"
+    document.getElementById('changePassword').addEventListener('change', function() {
+        // Handle the change students password toggle (e.g., submit form or update page)
+        console.log('Change Students Password changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+
+    // Event listener for "If Server is Down"
+    document.getElementById('ifServerDown').addEventListener('change', function() {
+        // Handle the change for the "If Server is Down" setting
+        console.log('If Server is Down changed to: ' + this.value);
+        
+        // If the user selects "Alert", show an alert
+        if (this.value === 'alert') {
+            alert('Server is down. Please check!');
+        }
+    });
+
+
+
+
+     // Event listener for SMS Verification
+    document.getElementById('smsVerification').addEventListener('change', function() {
+        // Handle SMS verification toggle (e.g., submit form or update page)
+        console.log('SMS Verification changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+
+    // Event listener for Email Verification
+    document.getElementById('emailVerification').addEventListener('change', function() {
+        // Handle email verification toggle (e.g., submit form or update page)
+        console.log('Email Verification changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+
+
+
+
+    // Event listener for Music URL
+    document.getElementById('musicUrl').addEventListener('input', function() {
+        console.log('Music URL changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+
+    // Event listener for Header Code
+    document.getElementById('headerCode').addEventListener('input', function() {
+        console.log('Header Code changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+
+    // Event listener for Footer Code
+    document.getElementById('footerCode').addEventListener('input', function() {
+        console.log('Footer Code changed to: ' + this.value);
+        // Trigger form submission or AJAX request to update the setting
+    });
+</script>
+
+<body>

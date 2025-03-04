@@ -1,0 +1,113 @@
+{% include 'header.twig' %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<div class="container-fluid mt-4">
+    <h2>Welcome to CCDI Webpay Admin Dashboard</h2>
+
+    <div class="row mt-4">
+        <!-- Total Students -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    <h5>Total Students</h5>
+                    <h3>1,234</h3>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span>View Details</span>
+                    <i class="fas fa-users fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Fees Collected -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    <h5>Total Fees Collected</h5>
+                    <h3>₱45,678</h3>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span>View Details</span>
+                    <i class="fas fa-peso-sign fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Payments -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-warning text-white shadow">
+                <div class="card-body">
+                    <h5>Pending Payments</h5>
+                    <h3>12</h3>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span>View Details</span>
+                    <i class="fas fa-exclamation-circle fa-2x"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Admin Users -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card bg-info text-white shadow">
+                <div class="card-body">
+                    <h5>Active Admin Users</h5>
+                    <h3>5</h3>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <span>View Details</span>
+                    <i class="fas fa-user-shield fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Transactions Table -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h4>Recent Transactions</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Date</th>
+                            <th>Student</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-10-11</td>
+                            <td>Melissa Empanada</td>
+                            <td>₱150</td>
+                            <td><span class="badge badge-success">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-10</td>
+                            <td>Acel Padua</td>
+                            <td>₱200</td>
+                            <td><span class="badge badge-warning">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-09</td>
+                            <td>Arise troy</td>
+                            <td>₱100</td>
+                            <td><span class="badge badge-danger">Failed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-08</td>
+                            <td>Judio Imbutido</td>
+                            <td>₱100</td>
+                            <td><span class="badge badge-danger">Failed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>

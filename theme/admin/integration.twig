@@ -1,0 +1,34 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link rel="stylesheet" href="../../css/admin/settings/integration.css">
+    <h2>Integrations</h2>
+    
+    <div class="integration-section">
+        <h3>Active</h3>
+        {% for integration in activeIntegrations %}
+            <div class="integration-item active">
+                <img src="{{ integration.icon }}" alt="{{ integration.name }}">
+                <div>
+                    <h4>{{ integration.name }}</h4>
+                    <p>{{ integration.description }}</p>
+                </div>
+                <button class="edit-btn">Edit</button>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="integration-section">
+        <h3>Other</h3>
+        {% for integration in otherIntegrations %}
+            <div class="integration-item">
+                <img src="{{ integration.icon }}" alt="{{ integration.name }}">
+                <div>
+                    <h4>{{ integration.name }}</h4>
+                    <p>{{ integration.description }}</p>
+                </div>
+                <button class="activate-btn">Activate</button>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

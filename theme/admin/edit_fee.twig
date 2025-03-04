@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Fee</title>
+    <link rel="stylesheet" href="path/to/your/css/styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Fee</h1>
+
+        <form action="" method="POST">
+            <input type="hidden" name="id" value="{{ fee.fee_id }}">
+            <label for="fee_name">Fee Name:</label>
+            <input type="text" id="fee_name" name="fee_name" value="{{ fee.fee_name }}" required>
+            
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" value="{{ fee.amount }}" required>
+
+            <button type="submit">Update Fee</button>
+        </form>
+
+        <div class="navigation">
+            <a href="manage_fees.php">Back to Manage Fees</a>
+        </div>
+    </div>
+</body>
+</html>

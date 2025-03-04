@@ -1,0 +1,20 @@
+{
+    "name": "yanyan/ccdi_webpay",
+    "description": "Admin panel for managing web payment",
+    "type": "project",
+    "require": {
+        "twig/twig": "^3.14"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Yanyan\\CcdiWebpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aidriane Carl G. Esmeña"
+        }
+    ],
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,209 @@
+{% include 'header.twig' %}
+
+<div class="container">
+    <h2>Manage Languages</h2>
+
+    <!-- Add Language Button -->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addLanguageModal">Add New Language</button>
+
+    <!-- Language Table -->
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Language Name</th>
+                <th>Code</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for language in languages %}
+            <tr>
+                <td>{{ language.language_name }}</td>
+                <td>{{ language.language_code }}</td>
+                <td>
+                    {% if language.language_type == "1" %}
+                        RTL
+                    {% else %}
+                        LTR
+                    {% endif %}
+                </td>
+
+                <td>
+                    <input type="radio" name="default_language" {% if language.default_language == "1" %} checked {% endif %} 
+                        onchange="setDefaultLanguage({{ language.id }})">
+                </td>
+                <td>
+                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editLanguageModal{{ language.id }}">Edit</button>
+                </td>
+            </tr>
+
+            <!-- Edit Language Modal -->
+            <div class="modal fade" id="editLanguageModal{{ language.id }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Language</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="edit_language_id" value="{{ language.id }}">
+                                <label>Language Name:</label>
+                                <input type="text" name="edit_language_name" class="form-control" value="{{ language.language_name }}" required>
+                                <label>Language Code:</label>
+                                <input type="text" name="edit_language_code" class="form-control" value="{{ language.language_code }}" required>
+                                <label>Type:</label>
+                                <select name="edit_language_type" class="form-control">
+                                    <option value="2" {% if language.language_type == "2" %} selected {% endif %}>LTR</option>
+                                    <option value="1" {% if language.language_type == "1" %} selected {% endif %}>RTL</option>
+                                </select>
+                                <label>Set as Default:</label>
+                                <input type="checkbox" name="edit_default_language" {% if language.default_language == "1" %} checked {% endif %}>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Language Modal -->
+<div class="modal fade" id="addLanguageModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Language</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <label>Language Name:</label>
+                    <input type="text" name="language_name" class="form-control" required>
+                    <label>Language Code:</label>
+                    <input type="text" name="language_code" class="form-control" required>
+                    <label>Type:</label>
+                    <select name="language_type" class="form-control">
+                        <option value="2">LTR</option>
+                        <option value="1">RTL</option>
+                    </select>
+                    <label>Set as Default:</label>
+                    <input type="checkbox" name="default_language">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setDefaultLanguage(id) {
+        fetch("language.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "default_id=" + id
+        }).then(() => location.reload());
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Add Language Modal
+    const addLanguageBtn = document.getElementById("addLanguageBtn");
+    const addLanguageModal = document.getElementById("addLanguageModal");
+    const editLanguageModal = document.getElementById("editLanguageModal");
+    const closeButtons = document.querySelectorAll(".close");
+
+    addLanguageBtn.addEventListener("click", function() {
+        addLanguageModal.style.display = "block";
+    });
+
+    // Edit Button Click
+    document.querySelectorAll(".edit-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+            document.getElementById("edit_language_id").value = this.dataset.id;
+            document.getElementById("edit_language_name").value = this.dataset.name;
+            editLanguageModal.style.display = "block";
+        });
+    });
+
+    // Close Modals
+    closeButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            addLanguageModal.style.display = "none";
+            editLanguageModal.style.display = "none";
+        });
+    });
+
+    // Toggle Status
+    document.querySelectorAll(".toggle-status").forEach(toggle => {
+        toggle.addEventListener("change", function() {
+            const languageId = this.dataset.id;
+            const status = this.checked ? "on" : "off";
+
+            fetch("update_language_status.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `id=${languageId}&status=${status}`
+            });
+        });
+    });
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+        if (event.target === addLanguageModal) addLanguageModal.style.display = "none";
+        if (event.target === editLanguageModal) editLanguageModal.style.display = "none";
+    };
+});
+function switchDirection(direction) {
+    document.documentElement.setAttribute("dir", direction);
+    document.body.classList.toggle("rtl-mode", direction === "rtl");
+    document.body.classList.toggle("ltr-mode", direction === "ltr");
+}
+</script>
+<div class="button-container">
+    <button onclick="switchDirection('ltr')">LTR</button>
+    <button onclick="switchDirection('rtl')">RTL</button>
+</div>
+<p>test this to switch the <br>language from left to right</p>
+<style>
+/* Style for the container to align buttons to the right */
+.button-container {
+    display: flex;            
+    justify-content: flex-end; 
+    gap: 10px;                 
+    padding: 10px;             
+    margin-right: 10px;
+}
+
+/* Style for the buttons */
+button {
+    padding: 10px 20px;        
+    font-size: 16px;           
+    cursor: pointer;         
+    border: 1px solid #ccc;   
+    border-radius: 5px;       
+    background-color:rgb(255, 0, 0); 
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ddd;  
+}
+
+/* Style for the paragraph */
+p {
+    text-align: right;         
+    font-size: 10px;              
+    color: red;                 
+    margin-right: 20px;
+}
+</style>

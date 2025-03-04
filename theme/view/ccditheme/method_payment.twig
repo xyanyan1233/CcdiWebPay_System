@@ -1,0 +1,77 @@
+{% include "header.twig" %}
+<link rel="stylesheet" href="../../css/students/schooltheme/method_payment.css">
+
+{% block content %}
+<div class="container">
+    <!-- Invoice Section -->
+    <div class="invoice-container">
+        <h2>Invoice</h2>
+        <div class="invoice-details">
+            <p><strong>Payee:</strong> {{ student.first_name }} {{ student.last_name }}</p>
+            <p><strong>Category:</strong> {{ category }}</p>
+            <p><strong>Total Amount:</strong> ₱{{ amount }}</p>
+        </div>
+    </div>
+
+    <!-- Payment Methods Section -->
+    <div class="payment-container">
+        <h2>Select a Payment Method</h2>
+        <div class="form-group">
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod" onchange="showSubOptions()">
+                <option value="">Select Payment Method</option>
+                <option value="gcash">GCash</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+        </div>
+
+        <!-- Sub-options will appear dynamically -->
+        <div id="subOptionsContainer" class="hidden">
+            <h3>Select Payment Option:</h3>
+            <div id="subOptions"></div>
+        </div>
+
+        <!-- Credit Card Fields (Hidden Initially) -->
+        <div id="creditCardFields" class="hidden">
+            <h3>Enter Card Details</h3>
+            <input type="text" name="cardNumber" placeholder="Card Number">
+            <input type="text" name="cardName" placeholder="Cardholder Name">
+            <input type="text" name="expiryDate" placeholder="MM/YY">
+            <input type="text" name="cvv" placeholder="CVV">
+        </div>
+
+        <!-- Payment Form -->
+        <form id="paymentForm" action="confirm_payment.php" method="POST">
+            <input type="hidden" name="category" value="{{ category }}">
+            <input type="hidden" name="amount" value="{{ amount }}">
+            <input type="hidden" name="method" id="selectedMethod">
+            <button type="submit" class="confirm-btn">Proceed to Payment</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showSubOptions() {
+        const method = document.getElementById("paymentMethod").value;
+        const subOptionsContainer = document.getElementById("subOptionsContainer");
+        const subOptions = document.getElementById("subOptions");
+        const creditCardFields = document.getElementById("creditCardFields");
+        
+        subOptions.innerHTML = ""; // Clear previous options
+        subOptionsContainer.classList.add("hidden");
+        creditCardFields.classList.add("hidden");
+
+        if (method === "gcash") {
+            subOptions.innerHTML = `
+                <label><input type="radio" name="gcash_option" value="GCash QR"> GCash QR</label><br>
+                <label><input type="radio" name="gcash_option" value="GCash Wallet"> GCash Wallet</label>
+            `;
+            subOptionsContainer.classList.remove("hidden");
+        } else if (method === "credit_card") {
+            creditCardFields.classList.remove("hidden");
+        }
+    }
+</script>
+
+{% endblock %}

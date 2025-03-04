@@ -1,0 +1,32 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect www to non-www (optional)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Remove .php extension from URLs (optional)
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
+# Custom error pages (optional)
+ErrorDocument 404 /404.php
+ErrorDocument 500 /500.php
+
+# Prevent directory browsing
+Options -Indexes
+
+# Set default character encoding
+AddDefaultCharset UTF-8
+
+# Cache control (optional)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 week"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

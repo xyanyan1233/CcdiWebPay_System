@@ -1,0 +1,373 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #4facfe;
+    color: #333;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10%;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #4facfe;
+}
+
+header .btn-primary {
+    background-color: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    transition: background-color 0.3s ease;
+}
+
+header .btn-primary:hover {
+    background-color: #3a9ceb;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 10%;
+    background: #ffffff;
+    position: relative;
+}
+
+main .logo-section {
+    flex: 1;
+    text-align: center;
+}
+
+main .logo-section .large-logo {
+    width: 300px;
+    height: auto;
+}
+
+main .logo-section .description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+main .login-form {
+    flex: 1;
+    max-width: 400px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe); 
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+    border: 2px solid #ffffff;
+    backdrop-filter: blur(10px); 
+}
+
+main .login-form h2 {
+    margin-bottom: 25px;
+    font-size: 2rem; 
+    color: #fff; 
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px; 
+}
+
+main .login-form .form-group {
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+
+main .login-form .form-group label {
+    font-weight: bold;
+    color: #fff; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    font-size: 1rem;
+    display: block; 
+    margin-bottom: 8px; 
+    transition: all 0.3s ease; 
+}
+
+main .login-form .form-control {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+main .login-form .form-control:focus {
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    outline: none;
+}
+
+main .login-form .form-control:focus + label {
+    font-size: 0.9rem;
+    color: #00f2fe; 
+    transform: translateY(-20px); 
+}
+
+main .login-form .btn-primary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+main .login-form .btn-primary:hover {
+    background: linear-gradient(135deg, #3a9ceb, #00d1d8);
+    transform: translateY(-3px);
+}
+
+main .login-form a {
+    color: #fff; 
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+main .login-form a:hover {
+    color: #00f2fe; 
+    transform: translateX(5px); 
+}
+main .login-form .alert{
+    background-color: red;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+
+.payments {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.payments h2{
+    font-size: 2.5rem; 
+    color: #333; 
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.payment-logos {
+    display: flex;
+    flex-wrap: nowrap;
+    animation: slide 30s linear infinite;
+}
+
+.payment-logos img {
+    margin-right: 20px;  /* Space between logos */
+    height: 50px; /* Adjust to your preferred logo size */
+}
+
+/* Keyframes for the smooth sliding animation */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Cloning the logos to ensure infinite looping */
+.payment-container::after {
+    content: '';
+    display: block;
+    width: 100%; /* Take up space equal to the width of the container */
+}
+
+/* How to Pay Section */
+.how-to-pay {
+    padding: 50px 10%;
+    background: #fff; 
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    color: #333; 
+    text-align: center; 
+}
+
+.how-to-pay h2 {
+    font-size: 2.5rem; 
+    color: #333; 
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap; 
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-10px);
+    opacity: 0.8;
+}
+
+.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #4facfe; 
+    color: #fff; 
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step p {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.step:hover p {
+    color: #00f2fe;
+}
+
+/* Right-pointing arrow styling */
+.arrow {
+    width: 30px;
+    height: 30px;
+    border-top: 3px solid #333; 
+    border-right: 3px solid #333; 
+    transform: rotate(45deg);
+    margin: 0 20px;
+    animation: arrowPulse 1.5s infinite alternate; 
+}
+
+/* Animation for arrow pulse */
+@keyframes arrowPulse {
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+    100% {
+        transform: rotate(45deg) scale(1.2); 
+    }
+}
+
+@media (max-width: 768px) {
+    .how-to-pay {
+        padding: 50px 5%;
+    }
+
+    .steps {
+        flex-direction: column; 
+    }
+
+    .step {
+        width: 80%; 
+        margin-bottom: 20px;
+    }
+
+    .arrow {
+        margin: 10px 0; 
+    }
+}
+
+.divider-top{
+    height: 100px;
+    fill: #4facfe;
+    background-color: white;
+    border: transparent;
+    position: relative;
+    top: 50px;
+}
+.divider-bottom{
+    fill: #4facfe;
+    transform: rotate(180deg);
+    background-color: white;
+    border: transparent;
+}
+.mop{
+    fill: #4facfe;
+    background-color: white;
+}
+.divider-footer{
+    zoom: 1;
+    transform: rotate(180deg);
+    fill: #4facfe;
+    background-color: white;
+}

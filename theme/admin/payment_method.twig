@@ -1,0 +1,89 @@
+{% include "header.twig" %}
+<link rel="stylesheet" href="../css/admin/payment_method.css">
+
+{% block content %}
+<div class="container">
+    <h2>Manage Payment Methods</h2>
+
+    <!-- Add Payment Method Button -->
+    <button id="openModalBtn" class="btn btn-success mt-4 animated-btn">+ Add Payment Method</button>
+
+    <!-- Add Payment Method Modal -->
+    <div id="paymentModal" class="modal fade" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Add New Payment Method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="add_payment_method.php" method="POST" class="form-group">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="method_name">Payment Method Name</label>
+                            <input type="text" class="form-control input-animate" id="method_name" name="method_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="method_type">Type</label>
+                            <select id="method_type" name="method_type" class="form-control input-animate" required>
+                                <option value="GCash">GCash</option>
+                                <option value="Maya">Maya</option>
+                                <option value="PayPal">PayPal</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                                <option value="Credit Card">Credit Card</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="account_number">Account Number / Email</label>
+                            <input type="text" class="form-control input-animate" id="account_number" name="account_number" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-animate">Add Payment Method</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Methods List -->
+    <div class="methods-list mt-4 animated-list">
+        <h3>Existing Payment Methods</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Account Details</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for method in payment_methods %}
+                <tr class="table-row-animate">
+                    <td>{{ method.name }}</td>
+                    <td>{{ method.type }}</td>
+                    <td>{{ method.account_number }}</td>
+                    <td>
+                        <form method="POST" action="delete_payment_method.php" style="display:inline;">
+                            <input type="hidden" name="delete_id" value="{{ method.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm btn-animate">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Open the modal
+    $('#openModalBtn').on('click', function() {
+        $('#paymentModal').modal('show');
+    });
+</script>
+
+{% endblock %}

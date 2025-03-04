@@ -1,0 +1,28 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link href="../css/admin/appearance/theme.css" rel="stylesheet" >
+<div class="theme-container">
+    <h2>Theme Management</h2>
+    <div class="theme-grid">
+        {% for theme in themes %}
+        <div class="theme-card {% if theme.id == active_theme %}active{% endif %}">
+            <div class="theme-image-container">
+                <img src="../{{ theme.theme_image }}" alt="{{ theme.theme_name }}" class="theme-image">
+                <form method="POST" class="activate-form">
+                    <input type="hidden" name="themeId" value="{{ theme.id }}">
+                    <button type="submit" name="activateTheme" class="activate-btn">Activate</button>
+                </form>
+            </div>
+            <div class="theme-info">
+                <span class="theme-name">{{ theme.theme_name }}</span>
+                <div class="theme-actions">
+                    <button class="view-btn"><i class="fas fa-eye"></i></button>
+                    <button class="edit-btn">Edit</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

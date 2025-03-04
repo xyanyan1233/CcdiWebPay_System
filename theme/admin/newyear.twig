@@ -1,0 +1,72 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link href="../css/admin/appearance/newyear.css" rel="stylesheet" >
+<div class="newyear-container">
+    <h2>New Year Decorations</h2>
+    <form method="POST" action="newyear.php">
+        <p class="status {% if settings.status == 0 %}disabled{% endif %}">
+            {% if settings.status == 0 %}Currently disabled{% else %}Enabled{% endif %}
+        </p>
+
+        <label>
+            <input type="checkbox" name="falling_snow" {% if settings.falling_snow %}checked{% endif %}>
+            <strong>Falling snow</strong>
+        </label>
+        <div>
+            <label>Snowflakes</label>
+            <input type="number" name="snowflakes" value="{{ settings.snowflakes }}">
+        </div>
+        <div>
+            <label>Fall speed</label>
+            <select name="fall_speed">
+                <option value="Slow" {% if settings.fall_speed == 'Slow' %}selected{% endif %}>Slow</option>
+                <option value="Medium" {% if settings.fall_speed == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Fast" {% if settings.fall_speed == 'Fast' %}selected{% endif %}>Fast</option>
+            </select>
+        </div>
+
+        <label>
+            <input type="checkbox" name="garlands" {% if settings.garlands %}checked{% endif %}>
+            <strong>Garlands</strong>
+        </label>
+        <div>
+            <label>Shape</label>
+            <select name="shape">
+                <option value="Oval" {% if settings.shape == 'Oval' %}selected{% endif %}>Oval</option>
+                <option value="Circle" {% if settings.shape == 'Circle' %}selected{% endif %}>Circle</option>
+            </select>
+        </div>
+        <div>
+            <label>Colors</label>
+            <select name="colors">
+                <option value="Style 1" {% if settings.colors == 'Style 1' %}selected{% endif %}>Style 1</option>
+                <option value="Style 2" {% if settings.colors == 'Style 2' %}selected{% endif %}>Style 2</option>
+            </select>
+        </div>
+
+        <label>
+            <input type="checkbox" name="fireworks" {% if settings.fireworks %}checked{% endif %}>
+            <strong>Fireworks</strong>
+        </label>
+        <div>
+            <label>Size</label>
+            <select name="firework_size">
+                <option value="Small" {% if settings.firework_size == 'Small' %}selected{% endif %}>Small</option>
+                <option value="Medium" {% if settings.firework_size == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Large" {% if settings.firework_size == 'Large' %}selected{% endif %}>Large</option>
+            </select>
+        </div>
+        <div>
+            <label>Delay</label>
+            <select name="firework_delay">
+                <option value="Slow" {% if settings.firework_delay == 'Slow' %}selected{% endif %}>Slow</option>
+                <option value="Medium" {% if settings.firework_delay == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="Fast" {% if settings.firework_delay == 'Fast' %}selected{% endif %}>Fast</option>
+            </select>
+        </div>
+
+        <button class="submitbutton" type="submit">Update Settings</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+/* integration.css */
+.integration-section {
+    margin-bottom: 20px;
+}
+.integration-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+.integration-item.active {
+    background-color: #e3f2fd;
+}
+.integration-item img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+.integration-item h4 {
+    margin: 0;
+    font-size: 16px;
+}
+.integration-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+button {
+    margin-left: auto;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+.activate-btn {
+    background-color: #28a745;
+    color: white;
+}

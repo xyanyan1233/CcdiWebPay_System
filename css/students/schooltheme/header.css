@@ -1,0 +1,191 @@
+/* Base CSS for the page */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f9fc;
+    color: #333;
+    position: relative;
+}
+
+/* Navbar Styling */
+nav.navbar {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensures navbar is above the sidebar */
+}
+
+/* Logo Styling */
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+nav .logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* nav-links container styling */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Spacing between items */
+    margin-right: 50px;
+}
+
+/* User Dropdown Styling */
+.nav-links .dropdown {
+    position: relative;
+}
+
+.nav-links .user-avatar {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.nav-links .user-avatar:hover {
+    transform: scale(1.1);
+}
+
+.nav-links .dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #2c3e50;
+    cursor: pointer;
+}
+
+.nav-links .dropdown-toggle:focus {
+    outline: none;
+}
+
+.nav-links .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease;
+}
+
+.nav-links .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links .dropdown-menu a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Hover effect for dropdown button */
+.nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    top: 70px; /* Adjust the sidebar's top to be below the navbar */
+    left: 0;
+    height: calc(100% - 70px); /* Fill the remaining height */
+    width: 250px;
+    background-color: #3498db;
+    color: #fff;
+    padding-top: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 5; /* Sidebar behind the navbar */
+    padding-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #2980b9;
+}
+
+.sidebar ul li a .fas {
+    margin-right: 15px;
+}
+
+/* Active link in the sidebar */
+.sidebar ul li a.active {
+    background-color: #2980b9;
+}
+
+/* Content Styling */
+.content {
+    margin-left: 250px; /* Make space for sidebar */
+    padding: 30px;
+    margin-top: 70px; /* Offset the content below the fixed navbar */
+    transition: margin-left 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}

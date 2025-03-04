@@ -1,0 +1,368 @@
+/* Base CSS for the page */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f9fc;
+    color: #333;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Main content area adjustment */
+.new-payment-container {
+    margin-left: 250px; /* Space for sidebar */
+    padding-top: 80px; /* Offset below the fixed navbar */
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Cards Section */
+.cards-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 22%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 20px;
+    color: #3498db;
+}
+
+.card p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Divider styling */
+.divider {
+    height: 2px;
+    background-color: #ddd;
+    margin: 40px 0;
+}
+
+/* Form and Pending Payments Section */
+.form-pending-section {
+    display: flex;
+    gap: 30px;
+}
+
+/* Payment Form */
+.payment-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    padding-right: 20px;
+}
+
+.payment-form h2 {
+    color: #3498db;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.payment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.payment-form label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+.payment-form input,
+.payment-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.payment-form .btn-pay {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-form .btn-pay:hover {
+    background-color: #2980b9;
+}
+
+/* Pending Payments Section */
+.pending-container {
+    max-width: 400px; /* Set a fixed width for a cleaner look */
+}
+
+.pending-header {
+    background: linear-gradient(135deg, #2d4bf3, #1e78d7); /* Gradient for a modern look */
+    padding: 15px 20px; /* Adjusted padding for a slimmer header */
+    border-radius: 12px 12px 0 0; /* Rounded corners only on the top */
+    display: flex;
+    align-items: center; /* Vertically center text */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the header */
+}
+
+.pending-header h2 {
+    font-size: 22px; /* Smaller font size for a sleeker look */
+    color: #fff; /* White color for contrast */
+    margin: 0; /* Remove default margin */
+    font-family: 'Arial', sans-serif; /* Clean, modern font */
+}
+
+.pending-payments {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 0 12px 12px; /* Rounded corners at the bottom */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow to lift the payments section */
+}
+
+.pending-payments ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pending-payments ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd; /* Light border between items */
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+}
+
+.pending-payments ul li:hover {
+    transform: scale(1.02); /* Slight scale effect on hover */
+    background-color: #f0f5f9; /* Soft hover background */
+}
+
+.pending-payments ul li span {
+    font-size: 16px;
+    color: #333; /* Dark text color for contrast */
+    font-family: 'Arial', sans-serif;
+}
+
+.pending-payments ul li span:first-child {
+    font-weight: bold; /* Bold for the payment name */
+}
+
+.pending-payments ul li span:last-child {
+    color: #e74c3c; /* Red color for the due date */
+    font-weight: bold;
+}
+
+
+
+/* Animation for cards and form */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply the slide-up animation to cards */
+.card,
+.payment-form,
+.pending-payments {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .new-payment-container {
+        margin-left: 200px;
+    }
+
+    .cards-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .form-pending-section {
+        flex-direction: column;
+    }
+
+    .payment-form,
+    .pending-payments {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+#dropdown_for_search {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100%; /* Ensure it stretches under the input */
+    max-height: 200px;
+    overflow-y: auto; /* Scrollbar if there are too many options */
+    z-index: 10;
+    display: none; /* Start hidden */
+}
+
+#dropdown_for_search div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#dropdown_for_search div:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}
+
+
+/* Search Container */
+.search-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    padding-right: 20px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Search Input Field */
+#search {
+    width: 100%;
+    padding: 12px 40px; /* Adjust padding to make space for icons */
+    border: 2px solid #3498db; /* Blue border */
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    background-color: #f5faff; /* Light blue background */
+    margin-right: 300px;
+}
+
+#search:focus {
+    border-color: #1d75d6; /* Darker blue on focus */
+    outline: none;
+    background-color: #ffffff; /* White background on focus */
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    cursor: pointer;
+    color: #3498db; /* Blue search icon */
+}
+
+/* Clear Search Icon */
+.clear-search {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #3498db; /* Blue clear icon */
+    cursor: pointer;
+    display: none;
+}
+
+/* Live Search Dropdown */
+.dropdown {
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+    background-color: #23aae9;
+    border: 1px solid #3498db; /* Blue border */
+    border-radius: 5px;
+    position: absolute;
+    top: 45px; /* Adjusting dropdown position */
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown div:hover {
+    background-color: #00a1f8; /* Light blue background on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects for Search Input */
+.search-container:hover #search {
+    border-color: #1d75d6; /* Darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    #search {
+        font-size: 14px;
+    }
+}

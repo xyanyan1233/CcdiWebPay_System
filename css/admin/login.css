@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/adminbackground111.jpg');
+    background-color: rgb(240, 131, 11);
+    background-size: cover;
+
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.login-container:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.7), 0 0 30px rgba(0, 123, 255, 0.5); /* Glowing effect */
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.5); /* Adjust alpha for transparency */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better contrast */
+    animation: slideIn 0.5s ease-in-out;
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+.login-box:hover {
+    box-shadow: 0 0 20px rgba(130, 165, 202, 0.7), 0 0 30px rgba(140, 180, 223, 0.5); /* Glowing effect */
+    background: rgb(255, 255, 255); 
+    border-radius: 10px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h2 {
+    color: #333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+.logo {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    left: 20px; /* Adjust horizontal position */
+    width: 150px; /* Adjust width as needed */
+}

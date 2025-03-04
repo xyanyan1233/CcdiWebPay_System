@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="{{ direction }}" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/admin/header.css" rel="stylesheet">
+    <link href="../css/admin/appearance/appearance.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+</head>
+<body class="{% if direction == 'rtl' %}rtl-mode{% else %}ltr-mode{% endif %}">
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-primary border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading text-white">
+                <img id="sidebar-logo" src="../images/logo.png" alt="CCDI Admin Logo" class="d-none"> <!-- Image shown when collapsed -->
+                <span id="sidebar-text">CCDI Admin</span>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="dashboard.php" class="list-group-item list-group-item-action bg-primary text-white">
+                    <i class="fas fa-tachometer-alt  mr-3"></i>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+                <a href="manage_fees.php" class="list-group-item list-group-item-action bg-primary text-white">
+                    <i class="fas fa-dollar-sign mr-4"></i>
+                    <span class="menu-text">Manage Fees</span>
+                </a>
+                <a href="manage_students.php" class="list-group-item list-group-item-action bg-primary text-white">
+                    <i class="fas fa-user-graduate mr-3"></i>
+                    <span class="menu-text">Manage Students</span>
+                </a>
+                <a href="transaction_history.php" class="list-group-item list-group-item-action bg-primary text-white">
+                    <i class="fas fa-exchange-alt mr-3"></i>
+                    <span class="menu-text">Transaction</span>
+                </a>
+                <a href="manage_course.php" class="list-group-item list-group-item-action bg-primary text-white">
+                    <i class="fas fa-book-open mr-3"></i>
+                    <span class="menu-text">Course Management</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-primary text-white" id="settingsDropdown">
+                    <i class="fas fa-cog mr-3"></i>
+                    <span class="menu-text">Settings</span>
+                    <i class="fas fa-chevron-down ml-3"></i>
+                </a>
+
+                <div id="settingsDropdownMenu" class="list-group collapse">
+                    <a href="general.php" class="list-group-item list-group-item-action">General</a>
+                    <a href="payment_method.php" class="list-group-item list-group-item-action">Payment Method</a>
+                    <a href="currency.php" class="list-group-item list-group-item-action">Currencies</a>
+                    <a href="integration.php" class="list-group-item list-group-item-action">Integration</a>
+                    <a href="crons.php" class="list-group-item list-group-item-action">Crons</a>
+                    <a href="cpanel_settings.php" class="list-group-item list-group-item-action">CPanel Setting</a>
+                    <a href="update.php" class="list-group-item list-group-item-action">Update</a>
+                </div>
+
+                <a href="#" class="list-group-item list-group-item-action bg-primary text-white" id="appearanceDropdown">
+                    <i class="fas fa-paint-brush mr-3"></i>
+                    <span class="menu-text">Appearance</span>
+                    <i class="fas fa-chevron-down ml-3"></i>
+                </a>
+
+                <div id="appearanceDropdownMenu" class="list-group collapse">
+                    <a href="theme.php" class="list-group-item list-group-item-action">Theme</a>
+                    <a href="blog.php" class="list-group-item list-group-item-action">Blog</a>
+                    <a href="language.php" class="list-group-item list-group-item-action">Language</a>
+                    <a href="newyear.php" class="list-group-item list-group-item-action">New Year</a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <button class="btn btn-primary" id="menu-toggle">
+        <i class="fas fa-chevron-left" id="menu-icon"></i> 
+    </button>
+    <h3 class="ml-3">Dashboard</h3>
+    <div class="ml-auto d-flex align-items-center">
+    <!--day and moon-->
+        <div class="switch">
+            <input type="checkbox" class="switch__input" id="Switch" onclick="toggleThemeMode()" checked>
+            <label class="switch__label" for="Switch">
+                <span class="switch__indicator"></span>
+                <span class="switch__decoration"></span>
+            </label>
+        </div>
+        <!-- User Dropdown -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../images/ccdilogo.png" alt="User Avatar" class="rounded-circle" width="30">
+                {{admins.username}}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+            
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+            <script>
+                
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+
+                    // Change the menu icon based on the sidebar state
+                    if ($("#wrapper").hasClass("toggled")) {
+                        $("#menu-icon").removeClass("fa-chevron-left").addClass("fa-bars");
+                        $("#sidebar-logo").removeClass("d-none"); // Show logo when collapsed
+                        $("#sidebar-text").addClass("d-none"); // Hide text when collapsed
+                    } else {
+                        $("#menu-icon").removeClass("fa-bars").addClass("fa-chevron-left");
+                        $("#sidebar-logo").addClass("d-none"); // Hide logo when expanded
+                        $("#sidebar-text").removeClass("d-none"); // Show text when expanded
+                    }
+                });
+            </script>
+            <script>
+                function toggleThemeMode() {
+    const body = document.body;
+    const switchInput = document.getElementById("Switch");
+    const dayModeIcon = document.querySelector('.day_mode');
+    const nightModeIcon = document.querySelector('.night_mode');
+
+    body.classList.toggle("bg-dark");
+    body.classList.toggle("text-white");
+
+    // Toggle the table dark class for all tables
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+        table.classList.toggle('table-dark');
+    });
+}
+    // Ensure all container elements are updated
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.classList.toggle("bg-dark");
+        container.classList.toggle("text-white");
+    });
+
+    const chevronIcon = settingsDropdown.querySelector('i.fa-chevron-down');
+
+
+
+            document.addEventListener("DOMContentLoaded", function() {
+            const settingsDropdown = document.getElementById("settingsDropdown");
+            const settingsDropdownMenu = document.getElementById("settingsDropdownMenu");
+
+            // Check if the elements exist to avoid null reference errors
+            if (settingsDropdown && settingsDropdownMenu && chevronIcon) {
+                settingsDropdown.addEventListener("click", function(e) {
+                    e.preventDefault(); // Prevent default behavior for anchor click
+
+                    // Toggle the collapse class for showing/hiding the dropdown menu
+                    settingsDropdownMenu.classList.toggle("collapse");
+
+                    // Toggle the chevron icon direction
+                    if (settingsDropdownMenu.classList.contains("collapse")) {
+                        chevronIcon.classList.remove("fa-chevron-up");
+                        chevronIcon.classList.add("fa-chevron-down");
+                    } else {
+                        chevronIcon.classList.remove("fa-chevron-down");
+                        chevronIcon.classList.add("fa-chevron-up");
+                    }
+                });
+            }
+        });
+
+
+
+
+        // for Appearance
+        document.addEventListener("DOMContentLoaded", function() {
+    const appearanceDropdown = document.getElementById("appearanceDropdown");
+    const appearanceMenu = document.getElementById("appearanceDropdownMenu");
+
+    appearanceDropdown.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevents the page from jumping
+        appearanceMenu.classList.toggle("show"); // Toggles the dropdown
+        });
+    });
+            </script>

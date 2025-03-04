@@ -1,0 +1,128 @@
+{% include 'header.twig' %}
+<link rel="stylesheet" href="../css/admin/manage_course.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.12.1/jquery-ui.min.css">
+
+<body>
+    <div class="container mt-4">
+        <h2>Manage Courses</h2>
+        <button class="btn btn-success" data-toggle="modal" data-target="#addCourseModal">Add Course</button>
+        <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex align-items-center">
+                <!-- Select All Checkbox -->
+                <input type="checkbox" id="selectAllCourses" class="mr-2">
+                <label for="selectAllCourses">Select All Courses</label>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <!-- Bulk Actions Dropdown -->
+                <select id="bulkActions" class="form-control mr-2" disabled>
+                    <option value="">Bulk Actions</option>
+                    <option value="delete">Delete Selected Courses</option>
+                    <option value="disable">Disable Selected Courses</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            {% for course in courses %}
+                <div class="col-md-3 mb-4">
+                    <div class="card" style="background-color: {{ course.card_color }};">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <input type="checkbox" class="course-checkbox" data-course-id="{{ course.id }}">
+                            <h5 class="card-title mb-0">{{ course.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">{{ course.description }}</p>
+                            <a href="view_subjects.php?course_id={{ course.id }}" class="btn btn-primary">View Subjects</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>No courses found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCourseModalLabel">Add Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="add_course.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="courseName">Course Name</label>
+                            <input type="text" class="form-control" id="courseName" name="course_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseDescription">Description</label>
+                            <textarea class="form-control" id="courseDescription" name="description" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseImage">Course Image</label>
+                            <input type="file" class="form-control" id="courseImage" name="course_image" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="courseColor">Card Color</label>
+                            <input type="color" class="form-control" id="courseColor" name="card_color" value="#ffffff">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Course</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Select All Courses Checkbox
+        $('#selectAllCourses').on('change', function() {
+            var isChecked = $(this).prop('checked');
+            $('.course-checkbox').prop('checked', isChecked);
+            toggleBulkActions();
+        });
+
+        // Individual Course Checkbox
+        $('.course-checkbox').on('change', function() {
+            toggleBulkActions();
+        });
+
+        // Toggle Bulk Actions Dropdown
+        function toggleBulkActions() {
+            var selectedCourses = $('.course-checkbox:checked').length;
+            if (selectedCourses > 0) {
+                $('#bulkActions').prop('disabled', false);
+            } else {
+                $('#bulkActions').prop('disabled', true);
+            }
+        }
+
+        // Bulk Actions Dropdown
+        $('#bulkActions').on('change', function() {
+            var action = $(this).val();
+            var selectedCourses = $('.course-checkbox:checked');
+
+            if (action == 'delete') {
+                selectedCourses.each(function() {
+                    var courseId = $(this).data('course-id');
+                    // Perform AJAX or form submission to delete course
+                    console.log('Delete Course ID: ' + courseId);
+                });
+            } else if (action == 'disable') {
+                selectedCourses.each(function() {
+                    var courseId = $(this).data('course-id');
+                    // Perform AJAX or form submission to disable course
+                    console.log('Disable Course ID: ' + courseId);
+                });
+            }
+        });
+    </script>

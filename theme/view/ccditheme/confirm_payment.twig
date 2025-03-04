@@ -1,0 +1,14 @@
+{% extends "header.twig" %}
+
+{% block content %}
+<div class="confirm-payment-container">
+    <h2>Confirm Payment</h2>
+    <p>Student: {{ student.first_name }} {{ student.last_name }}</p>
+    <p>Payment Method: {{ payment_method|capitalize }}</p>
+    <p>Total Amount: ₱{{ total_amount }}</p>
+    <form action="process_payment.php" method="POST">
+        <input type="hidden" name="payment_method" value="{{ payment_method }}">
+        <button type="submit" class="btn-confirm">Confirm Payment</button>
+    </form>
+</div>
+{% endblock %}

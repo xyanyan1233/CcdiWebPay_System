@@ -1,0 +1,89 @@
+/* General styling */
+.blog-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Button Styling */
+.btn-new, .btn-publish, .btn-back {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btn-new { background-color: #007bff; color: white; }
+.btn-publish { background-color: #28a745; color: white; }
+.btn-back { background-color: #dc3545; color: white; text-decoration: none; display: inline-block; text-align: center; }
+
+/* Blog form container */
+.blog-form {
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+.blog-form input, 
+.blog-form textarea, 
+.blog-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Styling */
+.blog-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.blog-table th, .blog-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    text-align: center; /* Centers text in table cells */
+    vertical-align: middle;
+}
+
+.blog-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Image upload section */
+.blog-picture {
+    margin-bottom: 10px;
+}
+
+.recommend-size {
+    font-size: 12px;
+    color: gray;
+}
+
+/* CKEditor */
+.ck-editor__editable {
+    min-height: 200px;
+}
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}

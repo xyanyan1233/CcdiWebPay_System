@@ -1,0 +1,141 @@
+{% include "header.twig" %}
+
+<link rel="stylesheet" href="../../css/admin/settings/currency.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.12.1/jquery-ui.min.css">
+
+{% block content %}
+<div class="container">
+    <h1>Currency Management</h1>
+    <!-- Auto Currency Rate Section -->
+    <div class="setting mt-4">
+        <h2>Auto Currency Rate</h2>
+        <p>Note: If you add any currency whose rate is unknown to you, you can enter '1' as the rate and then click on the 'Auto Currency Rate' button to fetch the current rates. This step is mandatory. Be sure to click on the 'Auto Rate Updater' to update the service conversion rate.</p>
+        
+    </div>
+    <!-- Button to trigger Add Currency Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCurrencyModal">
+        Add New Currency
+    </button>
+
+    <!-- Add Currency Modal -->
+    <div class="modal fade" id="addCurrencyModal" tabindex="-1" role="dialog" aria-labelledby="addCurrencyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCurrencyModalLabel">Add New Currency</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="currency.php" method="POST">
+                        <div class="form-group">
+                            <label for="currencyName">Currency Name:</label>
+                            <input type="text" class="form-control" id="currencyName" name="currencyName" placeholder="Enter Currency Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currencySymbol">Currency Symbol:</label>
+                            <input type="text" class="form-control" id="currencySymbol" name="currencySymbol" placeholder="Enter Currency Symbol" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currencyRate">Exchange Rate:</label>
+                            <input type="number" class="form-control" id="currencyRate" name="currencyRate" placeholder="Enter Exchange Rate" required>
+                        </div>
+                        <button type="submit" name="addCurrency" class="btn btn-primary">Add Currency</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Currency Table Section -->
+    <div class="setting mt-4">
+        <h2>Currency List</h2>
+        <table id="currencyTable" class="currency-table">
+            <thead>
+                <tr>
+                    <th>Currency Name</th>
+                    <th>Auto Currency Rate Update</th>
+                    <th>Symbol</th>
+                    <th>Exchange Rate</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for currency in currencies %}
+                <tr>
+                    <td>{{ currency.name }}</td>
+                    <td>
+                        <form action="currency.php" method="POST" style="display:inline;">
+                            <!-- Custom Toggle Switch -->
+                            <label class="switchcurrency">
+                                <input type="checkbox" name="currencyRateUpdate" value="{{ currency.id }}" {% if currency.rate_update == 1 %}checked{% endif %}>
+                                <span class="slider round"></span>
+                            </label>
+                        </form>
+                    </td>
+                    <td>{{ currency.symbol }}</td>
+                    <td>{{ currency.rate }}</td>
+                    <td>
+                        <!-- Action Dropdown for Edit and Delete -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="actionMenuButton">
+                                <!-- Edit Action -->
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editCurrencyModal-{{ currency.id }}">Edit</a>
+
+                                <!-- Delete Action -->
+                                <form action="currency.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="currencyId" value="{{ currency.id }}">
+                                    <button type="submit" name="deleteCurrency" class="dropdown-item">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Edit Currency Modal -->
+                <div class="modal fade" id="editCurrencyModal-{{ currency.id }}" tabindex="-1" role="dialog" aria-labelledby="editCurrencyModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editCurrencyModalLabel">Edit Currency</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="currency.php" method="POST">
+                                    <div class="form-group">
+                                        <label for="currencyName">Currency Name:</label>
+                                        <input type="text" class="form-control" name="currencyName" value="{{ currency.name }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currencySymbol">Currency Symbol:</label>
+                                        <input type="text" class="form-control" name="currencySymbol" value="{{ currency.symbol }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currencyRate">Exchange Rate:</label>
+                                        <input type="number" class="form-control" name="currencyRate" value="{{ currency.rate }}" required>
+                                    </div>
+                                    <input type="hidden" name="currencyId" value="{{ currency.id }}">
+                                    <button type="submit" name="editCurrency" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
