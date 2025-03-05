@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Styles */
+body {
+    @apply font-sans m-0 p-0 bg-gradient-to-r from-blue-400 to-cyan-400 text-gray-800;
+}
+
+/* Header Styling */
+header {
+    @apply flex justify-between items-center px-10 py-2 bg-white shadow-md relative z-10;
+}
+
+header .logo img {
+    @apply h-12;
+}
+
+header nav {
+    @apply flex items-center;
+}
+
+header nav a {
+    @apply text-gray-800 font-bold mx-4 transition-colors duration-300 hover:text-blue-400;
+}
+
+header .btn-primary {
+    @apply bg-blue-400 text-white rounded-full px-5 py-2 transition-colors duration-300 hover:bg-blue-500;
+}
+
+/* Main Content */
+main {
+    @apply flex flex-col md:flex-row items-center justify-between p-10 bg-white relative;
+}
+
+main .logo-section {
+    @apply flex-1 text-center;
+}
+
+main .logo-section .large-logo {
+    @apply w-60;
+}
+
+main .logo-section .description {
+    @apply text-lg text-gray-600 mt-5;
+}
+
+main .login-form {
+    @apply flex-1 max-w-md bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl p-8 shadow-lg border-2 border-white backdrop-blur-md;
+}
+
+main .login-form h2 {
+    @apply text-2xl font-bold text-white text-center mb-6;
+}
+
+main .login-form .form-group {
+    @apply mb-5;
+}
+
+main .login-form .form-group label {
+    @apply font-bold text-white uppercase tracking-wide text-sm block mb-2;
+}
+
+main .login-form .form-control {
+    @apply rounded-lg border border-gray-300 px-4 py-3 w-full text-base focus:outline-none focus:ring-2 focus:ring-cyan-400;
+}
+
+main .login-form .btn-primary {
+    @apply w-full py-3 rounded-lg bg-gradient-to-r from-blue-400 to-cyan-400 text-white font-bold text-lg transition-transform duration-300 hover:translate-y-[-3px];
+}
+
+main .login-form a {
+    @apply text-white font-bold text-base transition-transform duration-300 hover:text-cyan-400 hover:translate-x-1;
+}
+
+main .login-form .alert {
+    @apply bg-red-500 text-white text-center text-lg rounded-xl mb-4;
+}
+
+/* Footer */
+footer {
+    @apply bg-gray-800 text-white py-5 text-center;
+}
+
+footer p {
+    @apply m-0 text-sm;
+}
+
+/* Payments Section */
+.payments {
+    @apply w-full overflow-hidden relative;
+}
+
+.payments h2 {
+    @apply text-2xl font-bold text-gray-800 text-center uppercase tracking-wide shadow-md;
+}
+
+.payment-container {
+    @apply flex justify-start items-center;
+}
+
+.payment-logos {
+    @apply flex flex-nowrap animate-slide;
+}
+
+.payment-logos img {
+    @apply mr-5 h-12;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* How to Pay Section */
+.how-to-pay {
+    @apply p-10 bg-white rounded-xl shadow-lg text-center;
+}
+
+.how-to-pay h2 {
+    @apply text-2xl font-bold text-gray-800 uppercase tracking-wide shadow-md;
+}
+
+.steps {
+    @apply flex flex-col md:flex-row justify-center items-center;
+}
+
+.step {
+    @apply flex flex-col items-center text-center p-5 w-32 transition-transform duration-300 hover:translate-y-[-5px];
+}
+
+.circle {
+    @apply w-16 h-16 rounded-full bg-blue-400 text-white text-2xl font-bold flex items-center justify-center shadow-md;
+}
+
+.step p {
+    @apply text-lg text-gray-800 font-medium mt-2 transition-colors duration-300 hover:text-cyan-400;
+}
+
+.arrow {
+    @apply w-8 h-8 border-t-4 border-r-4 border-gray-800 rotate-45 my-4 md:my-0 md:mx-5 animate-pulse;
+}
+
+@media (max-width: 768px) {
+    .how-to-pay {
+        @apply px-5;
+    }
+
+    .steps {
+        @apply flex-col;
+    }
+
+    .step {
+        @apply w-full mb-5;
+    }
+
+    .arrow {
+        @apply my-2;
+    }
+}
