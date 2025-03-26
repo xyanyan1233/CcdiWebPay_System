@@ -36,6 +36,7 @@ nav {
 
 .navbar .ml-3 {
     margin-left: 1rem;  /* Margin for the "Dashboard" title */
+    color: black;
 }
 
 button#menu-toggle {

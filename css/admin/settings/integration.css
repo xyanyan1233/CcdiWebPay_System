@@ -1,7 +1,10 @@
 /* integration.css */
 .integration-section {
     margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
 }
+
 .integration-item {
     display: flex;
     align-items: center;
@@ -28,18 +31,22 @@
     font-size: 14px;
     color: #666;
 }
-button {
+
+.edit-btn {
     margin-left: auto;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
     border-radius: 3px;
-}
-.edit-btn {
     background-color: #007bff;
     color: white;
 }
 .activate-btn {
+    margin-left: auto;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
     background-color: #28a745;
     color: white;
 }

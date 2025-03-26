@@ -1,0 +1,14 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link rel="stylesheet" href="../../css/admin/settings/update.css">
+
+<div class="update-container">
+    <div class="update-message">
+        <p class="version">Your current version is <strong>{{ current_version }}</strong></p>
+    </div>
+
+    <p class="latest-update">You are already on the latest update</p>
+</div>
+
+{% endblock %}

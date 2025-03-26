@@ -1,4 +1,5 @@
 {% include 'header.twig' %}
+<link href="../css/admin/dashboard.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <div class="container-fluid mt-4">
@@ -13,7 +14,7 @@
                     <h3>1,234</h3>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>View Details</span>
+                    <a href="manage_students.php">View Details</a>
                     <i class="fas fa-users fa-2x"></i>
                 </div>
             </div>
@@ -27,7 +28,7 @@
                     <h3>₱45,678</h3>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>View Details</span>
+                    <a href="#">View Details</a>
                     <i class="fas fa-peso-sign fa-2x"></i>
                 </div>
             </div>
@@ -41,7 +42,7 @@
                     <h3>12</h3>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>View Details</span>
+                    <a href="manage_fees.php">View Details</a>
                     <i class="fas fa-exclamation-circle fa-2x"></i>
                 </div>
             </div>
@@ -55,7 +56,7 @@
                     <h3>5</h3>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span>View Details</span>
+                    <a href="#">View Details</a>
                     <i class="fas fa-user-shield fa-2x"></i>
                 </div>
             </div>
@@ -65,7 +66,7 @@
     <!-- Recent Transactions Table -->
     <div class="card mt-4">
         <div class="card-header">
-            <h4>Recent Transactions</h4>
+            <h4 class="header-title">Recent Transactions</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">

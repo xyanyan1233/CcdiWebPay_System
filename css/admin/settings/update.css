@@ -1,0 +1,25 @@
+.update-container {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 600px;
+}
+
+.update-message {
+    background-color: #91c3e7;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+.version{
+    color: black;
+}
+.update-message strong {
+    font-weight: bold;
+    color: #077cf0;
+}
+
+.latest-update {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}

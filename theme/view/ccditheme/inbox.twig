@@ -1,0 +1,122 @@
+{% include "header.twig" %}
+<link rel="stylesheet" href="../../css/students/schooltheme/inbox.css">
+
+{% block content %}
+<div class="container">
+    <!-- Inbox Section -->
+    <div class="inbox-container">
+        <h2>Your Inbox</h2>
+        <ul class="inbox-list">
+            {% for message in messages %}
+                <li class="inbox-item {% if message.is_read == 1 %}read{% else %}unread{% endif %}" data-id="{{ message.id }}" onclick="viewMessage({{ message.id }})">
+                    <div class="message-header">
+                        <strong>{{ message.sender }}</strong> - {{ message.timestamp | date("d M Y H:i") }}
+                    </div>
+                    <div class="message-preview">
+                        {{ message.message | slice(0, 50) }}...
+                    </div>
+                </li>
+            {% else %}
+                <p>No messages found.</p>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Modal to View Message -->
+<div id="message-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="message-sender"></h2>
+        <p id="message-timestamp"></p>
+        <p id="message-content"></p>
+    </div>
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const messages = document.querySelectorAll(".message");
+    const modal = document.getElementById("message-modal");
+    const modalMessage = document.getElementById("modalMessage");
+    const closeModalBtn = document.querySelector(".close-btn");
+
+    // Function to open the modal with message content
+    messages.forEach(msg => {
+        msg.addEventListener("click", function () {
+            const messageId = this.getAttribute("data-message-id");
+            const fullMessage = this.getAttribute("data-message");
+
+            // Set the content of the modal
+            modalMessage.innerText = fullMessage;
+
+            // Show the modal
+            modal.style.display = "flex";
+
+            // Optionally mark the message as read in the database (AJAX request)
+            fetch("../../functions/mark_read.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `id=${messageId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    msg.classList.remove("unread");
+                }
+            });
+        });
+    });
+
+    // Close modal when clicking the close button
+    closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});
+
+    // Function to mark a message as read and show it in the modal
+    function viewMessage(messageId) {
+        // Mark the message as read (AJAX request)
+        fetch('inbox.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'mark_as_read': true,
+                'message_id': messageId
+            })
+        }).then(response => response.json()).then(data => {
+            if (data.status === 'success') {
+                // Mark the message as read in the UI
+                const messageElement = document.querySelector(`.inbox-item[data-id="${messageId}"]`);
+                messageElement.classList.remove('unread');
+                messageElement.classList.add('read');
+            }
+        });
+
+        // Get the message content and show it in the modal
+        const messageElement = document.querySelector(`.inbox-item[data-id="${messageId}"]`);
+        const sender = messageElement.querySelector('.message-header').innerText;
+        const timestamp = messageElement.querySelector('.message-preview').innerText;
+        const content = messageElement.querySelector('.message-preview').innerText;
+
+        document.getElementById('message-sender').innerText = sender;
+        document.getElementById('message-timestamp').innerText = timestamp;
+        document.getElementById('message-content').innerText = content;
+
+        document.getElementById('message-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('message-modal').style.display = 'none';
+    }
+</script>
+
+{% endblock %}

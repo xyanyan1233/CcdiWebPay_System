@@ -1,0 +1,31 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link rel="stylesheet" href="../../css/admin/settings/cron_settings.css">
+
+<div class="cron-container">
+    <h2>Cron Settings</h2>
+
+    <div class="cron-list">
+        {% for job in cron_jobs %}
+        <div class="cron-item">
+            <div class="cron-info">
+                <h3>{{ job.name }}</h3>
+                <p>{{ job.description }}</p>
+            </div>
+            <button class="detail-btn">Detail</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="cron-url">
+        <strong>Cron URL:</strong>
+        <input type="text" value="{{ cron_url }}" readonly class="cron-input">
+    </div>
+
+    <div class="api-key-note">
+        <span class="cron-key">Cron Key</span> Type your API Key in the password section for authentication.
+    </div>
+</div>
+
+{% endblock %}

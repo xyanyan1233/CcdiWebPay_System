@@ -1,0 +1,45 @@
+{% include "header.twig" %}
+
+{% block content %}
+<link rel="stylesheet" href="../../css/admin/settings/cpanel.css">
+
+<div class="cpanel-settings">
+    <h2>Cpanel Settings</h2>
+    <p>Manage your cPanel configuration effortlessly</p>
+
+    <div class="alert-box">
+        <strong>Please note:</strong> This feature must be purchased from the official owner of the website.
+    </div>
+
+    {% if success == 1 %}
+    <div class="success-message">
+        ✅ Settings updated successfully!
+    </div>
+    {% endif %}
+
+    <form action="cpanel_settings.php" method="post">
+        <label for="cpanel_user">Cpanel User</label>
+        <input type="text" id="cpanel_user" name="cpanel_user" value="{{ cpanel_user }}" placeholder="Enter Cpanel User" required>
+
+        <label for="cpanel_api">Cpanel API Key</label>
+        <input type="text" id="cpanel_api" name="cpanel_api_key" value="{{ cpanel_api_key }}" placeholder="Enter API Key" required>
+
+        <label for="cpanel_host">Cpanel Host</label>
+        <input type="text" id="cpanel_host" name="cpanel_host" value="{{ cpanel_host }}" placeholder="Enter Host" required>
+
+        <div class="child-panel">
+            <h3>Child Panel Settings</h3>
+            <p>Define the name servers for your site's destination</p>
+            
+            <label for="ns1">NS1</label>
+            <input type="text" id="ns1" name="ns1" value="{{ ns1 }}" placeholder="ns1.example.com" required>
+
+            <label for="ns2">NS2</label>
+            <input type="text" id="ns2" name="ns2" value="{{ ns2 }}" placeholder="ns2.example.com" required>
+        </div>
+
+        <button type="submit" class="save-btn">Save Settings</button>
+        <button type="button" class="check-status-btn">Check cPanel Status</button>
+    </form>
+</div>
+{% endblock %}

@@ -6,17 +6,18 @@ body {
 }
 
 /* Container */
-.container-fluid {
+.container {
+    max-width: 1200px;
     margin-top: 30px;
 }
 
 /* Title */
 h2 {
-    font-size: 2rem;
-    color: #000000;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
     font-weight: 600;
-    margin-bottom: 30px;
 }
+
 
 /* Cards for Dashboard Summary */
 .card {
@@ -24,7 +25,9 @@ h2 {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
-
+.header-title{
+    color: black;
+}
 .card-body {
     padding: 25px;
 }
@@ -42,7 +45,6 @@ h2 {
 }
 
 .card-footer {
-    background-color: #ffffff;
     padding: 15px 25px;
     border-top: 1px solid #e6e6e6;
 }
@@ -53,9 +55,9 @@ h2 {
     align-items: center;
 }
 
-.card-footer span {
+.card-footer a {
     font-size: 14px;
-    color: #777;
+    color: #ffffff;
 }
 
 .card-footer i {
@@ -171,8 +173,3 @@ h2 {
     transition: 0.3s ease-in-out;
 }
 
-/* Font Awesome Icons */
-.fas {
-    font-size: 30px;
-    color: white;
-}

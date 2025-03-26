@@ -1,0 +1,109 @@
+/* General container styling */
+.cron-container {
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* Header title */
+.cron-container h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Cron job list */
+.cron-list {
+    margin-top: 15px;
+}
+
+/* Individual cron item */
+.cron-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: background 0.3s ease-in-out;
+}
+
+.cron-item:hover {
+    background: #f1f1f1;
+}
+
+/* Job titles and descriptions */
+.cron-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.cron-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Detail button */
+.detail-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease-in-out;
+}
+
+.detail-btn:hover {
+    background: #0056b3;
+}
+
+/* Cron URL section */
+.cron-url {
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cron-input {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    outline: none;
+}
+
+/* API Key notice */
+.api-key-note {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+    padding: 12px;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+.cron-key {
+    background: #dc3545;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}

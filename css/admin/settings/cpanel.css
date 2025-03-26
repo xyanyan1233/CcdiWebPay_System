@@ -1,0 +1,108 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.cpanel-settings {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border-style: solid;
+    border-color: blue;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+.cpanel-settings h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.cpanel-settings p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Alert Box */
+.alert-box {
+    background-color: #ffebcc;
+    color: #d9534f;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Child Panel Section */
+.child-panel {
+    background: #28a745;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.child-panel h3 {
+    margin: 0;
+}
+
+.child-panel p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.save-btn, .check-status-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.save-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.check-status-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.check-status-btn:hover {
+    background-color: #0056b3;
+}
