@@ -1,6 +1,15 @@
 # Enable URL rewriting
 RewriteEngine On
 
+# Redirect requests to remove .php from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
+
+# Default dashboard redirection
+RewriteRule ^dashboard$ /theme/students/student_login.php [L]
+RewriteRule ^admin$ /admin/login.php [L]
+
 # Redirect www to non-www (optional)
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]

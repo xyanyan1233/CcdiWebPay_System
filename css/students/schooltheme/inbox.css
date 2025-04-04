@@ -1,212 +1,217 @@
-/* Base CSS for the inbox page */
+/* ========================== */
+/* General Styling */
+/* ========================== */
+
 body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f9fc;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7fc;
+    display: flex;
+    transition: margin-left 0.4s ease-in-out;
+}
+
+/* Default: Sidebar is visible */
+.inbox-container {
+    margin-left: 260px;
+    margin-top: 80px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    transition: margin-left 0.4s ease-in-out;
+}
+
+/* Sidebar Hidden: Expand Content */
+.sidebar-hidden ~ .inbox-container,
+.inbox-container.expanded {
+    margin-left: 0;
+}
+
+/* ========================== */
+/* Header Section with Notification Badge */
+/* ========================== */
+
+.header-section {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.header-section h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
     color: #333;
     position: relative;
 }
 
-/* Navbar Styling */
-nav.navbar {
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10; /* Ensures navbar is above the sidebar */
-}
-
-/* Sidebar Styling */
-.sidebar {
-    position: fixed;
-    top: 70px; /* Adjust the sidebar's top to be below the navbar */
-    left: 0;
-    height: calc(100% - 70px); /* Fill the remaining height */
-    width: 250px;
-    background-color: #3498db;
-    color: #fff;
-    padding-top: 20px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 5; /* Sidebar behind the navbar */
-    padding-bottom: 30px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar ul li {
-    margin: 15px 0;
-}
-
-.sidebar ul li a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-    padding: 15px 20px;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-    background-color: #2980b9;
-}
-
-.sidebar ul li a .fas {
-    margin-right: 15px;
-}
-
-/* Active link in the sidebar */
-.sidebar ul li a.active {
-    background-color: #2980b9;
-}
-
-/* Content Styling */
-.container {
-    margin-left: 250px; /* Make space for sidebar */
-    padding: 30px;
-    margin-top: 70px; /* Offset the content below the fixed navbar */
-    transition: margin-left 0.3s ease;
-}
-
-.inbox-container {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-h2 {
-    font-size: 30px;
-    color: #333;
-    margin-bottom: 20px;
+/* Inbox Notification Badge */
+.notification-badge {
+    background: red;
+    color: white;
+    font-size: 12px;
     font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -12px;
+    display: none; /* Hidden by default */
 }
 
-/* Inbox List */
+.header-section .inbox-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Show Badge when there are unread messages */
+.header-section .has-unread .notification-badge {
+    display: inline-block;
+}
+
+/* ========================== */
+/* Inbox List with Unread Counter */
+/* ========================== */
+
 .inbox-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    overflow-x: auto;
+    transition: all 0.3s ease-in-out;
 }
 
 .inbox-item {
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
+    background: #f9f9f9;
+    padding: 18px;
     margin-bottom: 10px;
-    background-color: #f9f9f9;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 5px solid transparent;
+    position: relative;
 }
 
-.inbox-item:hover {
-    background-color: #f1f1f1;
-}
-
-.inbox-item.read {
-    background-color: #e9ecef;
-}
-
+/* Unread Message */
 .inbox-item.unread {
-    background-color: #fff3cd;
     font-weight: bold;
+    background: #e3f2fd;
+    border-left-color: #3498db;
 }
 
-/* Message Preview */
-.message-header {
-    font-size: 16px;
-    font-weight: 600;
-    color: #007bff;
+/* Read Message */
+.inbox-item.read {
+    font-weight: normal;
+    background: #ffffff;
+    border-left-color: #27ae60;
 }
 
-.message-preview {
-    font-size: 14px;
-    color: #555;
-    margin-top: 8px;
+/* Inbox Hover Effect */
+.inbox-item:hover {
+    background: #dfeaf5;
+    transform: translateX(5px);
 }
 
-/* Modal Styling (Ensure it is hidden by default) */
-.modal {
-    display: none;  /* Initially hidden */
+/* Red Notification Badge for Unread Messages */
+.inbox-item.unread .unread-badge {
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+/* ========================== */
+/* Navbar Fix for Overlapping */
+/* ========================== */
+
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    z-index: 1000; /* Make sure modal is above other content */
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
+    background: white;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================== */
+/* Modal Styles */
+/* ========================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 /* Modal Content */
 .modal-content {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative; /* To allow positioning of the close button */
-}
-
-/* Modal Heading */
-.modal-content h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Modal Text */
-.modal-content p {
-    font-size: 16px;
-    color: #555;
+    position: relative;
 }
 
 /* Close Button */
 .close-btn {
-    font-size: 24px;
+    position: absolute;
     color: red;
-    position: absolute; /* Absolutely position inside the modal */
-    top: 10px;
+    top: 12px;
     right: 15px;
+    font-size: 22px;
     cursor: pointer;
+    transition: color 0.3s;
 }
 
 .close-btn:hover {
-    color: darkred;
+    color: #e74c3c;
 }
 
+/* ========================== */
+/* Animations */
+/* ========================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ========================== */
 /* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
+/* ========================== */
 
-    h2 {
-        font-size: 24px;
-    }
-
-    .inbox-item {
-        padding: 12px;
-    }
-
-    .modal-content {
-        width: 90%;
+@media (max-width: 1024px) {
+    .inbox-container {
+        margin-left: 0;
+        max-width: 100%;
     }
 }

@@ -5,7 +5,9 @@
 <div class="container">
     <!-- Inbox Section -->
     <div class="inbox-container">
-        <h2>Your Inbox</h2>
+        <h2>Your Inbox
+        <span class="notification-badge">3</span>
+        </h2>
         <ul class="inbox-list">
             {% for message in messages %}
                 <li class="inbox-item {% if message.is_read == 1 %}read{% else %}unread{% endif %}" data-id="{{ message.id }}" onclick="viewMessage({{ message.id }})">
@@ -117,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function closeModal() {
         document.getElementById('message-modal').style.display = 'none';
     }
+
+   
 </script>
 
 {% endblock %}

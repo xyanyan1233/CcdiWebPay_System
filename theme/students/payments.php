@@ -2,6 +2,7 @@
 // Include configuration file
 require_once '../../system/config.php';
 require_once '../../vendor/autoload.php';
+require_once 'header.php';
 
 // Start the session
 session_start();
@@ -27,12 +28,6 @@ try {
     $stmtStudent = $pdo->prepare('SELECT * FROM students WHERE id = :id');
     $stmtStudent->execute(['id' => $_SESSION['student_id']]);
     $student = $stmtStudent->fetch(PDO::FETCH_ASSOC);
-
-    // Redirect if student not found
-    if (!$student) {
-        header('Location: student_login.php');
-        exit();
-    }
 
     // Synchronize fees with payments for the student
     foreach ($fees as $fee) {
@@ -123,12 +118,15 @@ try {
 
     $payments = $stmtPayments->fetchAll(PDO::FETCH_ASSOC);
 
-    // Render the Twig template
+    
     echo $twig->render('payments.twig', [
         'student' => $student,
         'payments' => $payments,
         'current_filter' => $filter,
-        'current_search' => $search
+        'current_search' => $search,
+        'pageTitle' => $pageTitle, // Pass page title to Twig
+        'navLinks' => $navLinks,   // Pass navigation links to Twig
+        'activePage' => $activePage // Pass active page to Twig
     ]);
 } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();

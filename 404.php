@@ -2,8 +2,7 @@
 // Set the HTTP response status to 404
 http_response_code(404);
 
-// Include header if you have one
-include 'theme/admin/base.twig';
+//include 'theme/admin/header.twig';
 
 // Display a user-friendly message
 ?>
