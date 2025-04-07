@@ -75,18 +75,15 @@
     <script src="../../js/studentinfo/student_info.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const sidebar = document.querySelector(".sidebar");
-        const inboxContainer = document.querySelector(".inbox-container");
-        const toggleButton = document.createElement("button");
+    const sidebar = document.querySelector(".sidebar");
+    const toggleButton = document.createElement("button");
+    toggleButton.classList.add("sidebar-toggle");
+    toggleButton.innerHTML = "☰";
+    document.body.appendChild(toggleButton);
 
-        toggleButton.classList.add("sidebar-toggle");
-        toggleButton.innerHTML = "☰";
-        document.body.appendChild(toggleButton);
-
-        toggleButton.addEventListener("click", function () {
-            sidebar.classList.toggle("sidebar-hidden");
-            inboxContainer.classList.toggle("expanded");
-        });
+    toggleButton.addEventListener("click", function () {
+        sidebar.classList.toggle("sidebar-hidden");
+    });
 
         // Highlight active sidebar link
         document.querySelectorAll(".sidebar ul li a").forEach(link => {

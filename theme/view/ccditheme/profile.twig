@@ -3,17 +3,21 @@
 
 {% block content %}
 <div class="profile-container">
+    <!-- Profile Card -->
     <div class="profile-card">
+        
         <!-- Export Profile Button -->
         <div class="export-profile-btn">
             <button id="download-profile-pdf" class="btn-download-profile">Download Profile PDF</button>
         </div>
-        
+
+        <!-- Profile Picture Container -->
         <div class="profile-pic-container">
             <div class="profile-pic-wrapper">
+                <!-- Profile Picture -->
                 <img src="../../admin/images/studentspic/{{ student.picture }}" alt="Profile Picture" class="profile-pic" id="profile-pic">
-                
-                <!-- Camera Icon that acts as the File Input, visible only when hovering over the profile picture -->
+
+                <!-- Camera Icon (acts as a file input, visible only when hovering) -->
                 <form action="upload_picture.php" method="POST" enctype="multipart/form-data" id="upload-form">
                     <input type="file" name="profile_picture" accept="image/*" id="profile-picture-input" required>
                     <label for="profile-picture-input" class="camera-icon-label">
@@ -24,6 +28,7 @@
             </div>
         </div>
 
+        <!-- Profile Information -->
         <div class="profile-info">
             <h1>{{ student.first_name }} {{ student.last_name }}</h1>
             <h2>Student Profile</h2>
@@ -33,6 +38,7 @@
             <p>School Year: {{ student.school_year }}</p>
             <p>Registration Date: {{ student.created_at|date('F j, Y') }}</p>
 
+            <!-- Contact Info Section -->
             <div class="contact-info">
                 <div><i class="fas fa-phone"></i> {{ student.phone }}</div>
                 <div><i class="fas fa-globe"></i> {{ student.website }}</div>
@@ -41,6 +47,7 @@
         </div>
     </div>
 
+    <!-- Payment Section (Matriculation Fees) -->
     <div class="payment-section">
         <h3>Matriculation Fees</h3>
         <table class="payment-table">
@@ -63,6 +70,7 @@
         </table>
     </div>
 
+    <!-- Activity Fees Section (if any) -->
     <div class="payment-section activity-fees" style="float: right;">
         <h3>Activity Fees</h3>
         <table class="payment-table">
@@ -80,17 +88,14 @@
 </div>
 
 <script>
+    // Handle PDF Download Button
     document.getElementById('download-profile-pdf').addEventListener('click', function(e) {
-        e.preventDefault();  // Prevent page refresh or redirect
-        
-        // Get the student ID dynamically
+        e.preventDefault();
         var studentId = {{ student.id }};
-        
-        // Redirect to download.php for PDF generation
         window.location.href = '{{ base_url }}/pdfs/download.php?student_id=' + studentId;
     });
 
-    // Show image preview before uploading
+    // Image preview before uploading
     const input = document.getElementById('profile-picture-input');
     const profilePic = document.getElementById('profile-pic');
     
@@ -100,7 +105,7 @@
         
         reader.onloadend = function() {
             profilePic.src = reader.result;
-        }
+        };
         
         if (file) {
             reader.readAsDataURL(file);

@@ -7,7 +7,6 @@
         "tecnickcom/tcpdf": "^6.9",
         "endroid/qr-code": "^6.0",
         "bacon/bacon-qr-code": "^3.0",
-        "aferrandini/phpqrcode": "^1.0",
         "fpdf/fpdf": "^1.86",
         "setasign/fpdf": "^1.8"
     },

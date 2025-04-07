@@ -1,15 +1,31 @@
-/* Profile Container */
-.profile-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 50px auto;
+/* Base Reset */
+body {
+    margin: 0;
     font-family: 'Arial', sans-serif;
     display: flex;
-    gap: 20px;
-    background: linear-gradient(135deg, #e0f7fa, #bbdefb);
+    transition: margin-left 0.4s ease-in-out;
+}
+
+/* Profile Container */
+.profile-container {
+    margin-left: 250px;
+    width: 100%;
+    max-width: 1200px;
     padding: 40px;
+    margin-top: 100px;
+    background: linear-gradient(135deg, #e0f7fa, #bbdefb);
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(223, 172, 172, 0.1);
+    display: flex;
+    gap: 20px;
+    position: relative;  
+    transition: margin-left 0.4s ease-in-out;
+}
+
+/* Sidebar Hidden */
+.sidebar-hidden ~ .profile-container {
+    margin-left: 20px;
+    width: calc(100% - 20px);
 }
 
 /* Profile Picture */
@@ -24,7 +40,6 @@
     height: 250px;
 }
 
-/* Profile Picture Style */
 .profile-pic {
     width: 100%;
     height: 100%;
@@ -34,7 +49,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-/* Camera Icon Label (acts as a file input) */
+/* Camera Icon Label */
 .camera-icon-label {
     position: absolute;
     top: 50%;
@@ -52,19 +67,17 @@
     align-items: center;
 }
 
-/* Hover effect inside the profile-pic-wrapper */
 .profile-pic-wrapper:hover .camera-icon-label {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Camera Icon Style */
 .camera-icon {
     font-size: 30px;
     color: white;
 }
 
-/* Hide file input, it's triggered by the label */
+/* Hide file input */
 #profile-picture-input {
     display: none;
 }
@@ -127,24 +140,82 @@
 
 .contact-info div i {
     font-size: 1.5rem;
+}
 
-/* Download PDF Button */
+/* Export Profile (PDF) */
 .export-profile-btn {
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 10;
 }
 
 .btn-download-profile {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 25px;
     border: none;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 .btn-download-profile:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #388E3C, #4CAF50);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+.btn-download-profile:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* Upload Button - Modern Style */
+.btn-upload {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-upload:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn-upload:active {
+    transform: translateY(1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+
+    .profile-pic-wrapper {
+        margin: 0 auto;
+    }
+
+    .sidebar-toggle {
+        left: 80px;
+    }
+
+    .sidebar-hidden ~ .profile-container {
+        margin-left: 70px;
+    }
 }
